@@ -12,7 +12,7 @@ public struct CITEmojiPicker: View {
     public var body: some View {
         VStack {
             Text("Hello World!")
-                .foregroundColor(.black)
+                .foregroundColor(.textColor)
         }
         .frame(width: 200, height: 200)
     }
