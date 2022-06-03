@@ -12,7 +12,7 @@ import SwiftUI
 public struct CITEmojiPicker: View {
     public var body: some View {
         Text("Hello World!")
-            .foregroundColor(.emojiCategoriesBackground)
+            .foregroundColor(.textColor)
     }
     
     public init() {
