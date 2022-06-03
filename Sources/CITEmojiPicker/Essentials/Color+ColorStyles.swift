@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 public extension Color {
-    static let emojiCategoriesBackground = Color("emoji_categories_background")
-    static let searchBarBackground = Color("search_bar_background")
-    static let selectedCategoryBackground = Color("selected_category_background")
-    static let sheetBackground = Color("sheet_background")
-    static let textColor = Color("text_color")
+    public static let emojiCategoriesBackground = Color("emoji_categories_background")
+    public static let searchBarBackground = Color("search_bar_background")
+    public static let selectedCategoryBackground = Color("selected_category_background")
+    public static let sheetBackground = Color("sheet_background")
+    public static let textColor = Color("text_color")
 }
