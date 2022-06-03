@@ -15,6 +15,7 @@ public struct CITEmojiPicker: View {
             Text("Hello World!")
                 .foregroundColor(.white)
         }
+        .frame(width: 200, height: 200)
         .background(Color("text_color"))
     }
     
