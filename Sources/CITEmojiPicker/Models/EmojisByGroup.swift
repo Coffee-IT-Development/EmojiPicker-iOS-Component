@@ -18,7 +18,7 @@ public struct EmojisByGroup: Identifiable, Codable, Hashable {
         case skinToneSupportUnicodeVersion = "skin_tone_support_unicode_version"
     }
     
-    var id = UUID()
+    public var id = UUID()
     let emoji: String
     let skinToneSupport: Bool
     let name: String

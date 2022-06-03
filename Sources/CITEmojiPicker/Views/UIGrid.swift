@@ -10,6 +10,7 @@ import SwiftUI
 
 // 'Content' here is used to store the View you defined in the Block
 // 'T' is the object type of your list.
+@available(iOS 13.0, *)
 public struct UIGrid<Content: View, T: Hashable>: View {
     private let columns: Int
     
@@ -21,7 +22,7 @@ public struct UIGrid<Content: View, T: Hashable>: View {
     
     private var emptySpaces: Int = 0
     
-    var body: some View {
+    public var body: some View {
         HStack {
             ForEach(0 ..< self.list.count, id: \.self) { i  in
                 VStack {
