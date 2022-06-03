@@ -8,7 +8,7 @@
 import SwiftUI
 
 public class CITEmojiPickerViewModel: ObservableObject {
-    let emojiGroups: EmojiGroups = JSONFileDecoder.decode(fromFile: "emojis-by-group")
+    public let emojiGroups: EmojiGroups = JSONFileDecoder.decode(fromFile: "emojis-by-group")
 }
 
 public enum JSONFileDecoder {
