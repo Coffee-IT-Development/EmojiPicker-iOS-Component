@@ -10,7 +10,6 @@ import SwiftUI
 
 // 'Content' here is used to store the View you defined in the Block
 // 'T' is the object type of your list.
-@available(iOS 13.0, *)
 public struct UIGrid<Content: View, T: Hashable>: View {
     private let columns: Int
     

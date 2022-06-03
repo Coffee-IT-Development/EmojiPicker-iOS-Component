@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 13.0, *)
 public class CITEmojiPickerViewModel: ObservableObject {
     let emojiGroups: EmojiGroups = JSONFileDecoder.decode(fromFile: "emojis-by-group")
 }

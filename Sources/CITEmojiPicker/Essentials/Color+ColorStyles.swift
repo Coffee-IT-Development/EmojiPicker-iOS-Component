@@ -5,9 +5,9 @@
 //  Created by Hugo de Groot on 03/06/2022.
 //
 
+import Foundation
 import SwiftUI
 
-@available(iOS 13.0, *)
 public extension Color {
     static let emojiCategoriesBackground = Color("emoji_categories_background")
     static let searchBarBackground = Color("search_bar_background")
