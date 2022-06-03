@@ -11,8 +11,11 @@ import SwiftUI
 @available(iOS 13.0, *)
 public struct CITEmojiPicker: View {
     public var body: some View {
-        Text("Hello World!")
-            .foregroundColor(.textColor)
+        VStack {
+            Text("Hello World!")
+                .foregroundColor(.white)
+        }
+        .background(Color("text_color"))
     }
     
     public init() {
