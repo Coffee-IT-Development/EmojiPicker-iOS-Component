@@ -8,9 +8,8 @@
 import Foundation
 
 public enum JSONFileDecoder {
-    public static func decode<T: Codable>(fromFile fileName: String) -> T {
-        let path = Bundle.main.path(forResource: fileName, ofType: ".json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+    public static func decodeEmojis<T: Codable>() -> T {
+        let data = Bundle.module.dataFromResource("emojis-by-group")
         return try! JSONDecoder().decode(T.self, from: data)
     }
 }
