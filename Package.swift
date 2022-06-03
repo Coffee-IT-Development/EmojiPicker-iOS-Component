@@ -23,9 +23,17 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CITEmojiPicker",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .process("emojis-by-group")
+            ]
+        ),
         .testTarget(
             name: "CITEmojiPickerTests",
-            dependencies: ["CITEmojiPicker"]),
+            dependencies: ["CITEmojiPicker"],
+            resources: [
+                .process("emojis-by-group")
+            ]
+        ),
     ]
 )
