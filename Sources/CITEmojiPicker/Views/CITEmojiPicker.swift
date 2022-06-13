@@ -14,6 +14,8 @@ public struct CITEmojiPicker: View {
         VStack {
             Text("Hello World!")
                 .foregroundColor(.textColor)
+            
+            let _ = print(viewModel.emojisByGroup)
         }
         .frame(width: 200, height: 200)
     }

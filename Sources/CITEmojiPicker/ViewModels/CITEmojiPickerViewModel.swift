@@ -16,7 +16,6 @@ public class CITEmojiPickerViewModel: ObservableObject {
     public init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         emojisByGroup = filterEmojis()
-        print(emojisByGroup)
     }
     
     public func filterEmojis() -> EmojiGroups {
