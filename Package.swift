@@ -25,7 +25,7 @@ let package = Package(
             name: "CITEmojiPicker",
             dependencies: [],
             resources: [
-                .process("emojis-by-group")
+                .process("emojis-by-group.json")
             ]
         ),
         .testTarget(
