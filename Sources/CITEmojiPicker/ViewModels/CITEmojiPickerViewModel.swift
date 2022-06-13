@@ -11,14 +11,9 @@ public class CITEmojiPickerViewModel: ObservableObject {
     let data = Bundle.module.dataFromResource("emojis-by-group")
     public let emojiGroups: EmojiGroups
     
-    @Published var emojisByGroup: EmojiGroups
-    
-    public init() {
-        emojiGroups = JSONFileDecoder.decodeEmojis()
-        emojisByGroup = filterEmojis()
-    }
-    
-    public func filterEmojis() -> EmojiGroups {
+    @Published var emojisByGroup: EmojiGroups = {
+        let emojiGroups = JSONFileDecoder.decodeEmojis()
+        
         var emojisByGroup: EmojiGroups = [:]
         var emojiGroup: [EmojisByGroup] = []
         for emojiType in EmojiTypes.allCases {
@@ -30,6 +25,10 @@ public class CITEmojiPickerViewModel: ObservableObject {
             emojiGroup = []
         }
         return emojisByGroup
+    }()
+    
+    public init() {
+        emojiGroups = JSONFileDecoder.decodeEmojis()
     }
 }
 
