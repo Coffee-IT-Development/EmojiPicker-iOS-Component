@@ -23,21 +23,21 @@ enum EmojiTypes: String, Identifiable, CaseIterable {
     var emojiImage: Image {
         switch self {
         case .smileysAndEmotion:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .animalsAndNature:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .foodAndDrink:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .activities:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .travelAndPlaces:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .objects:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .symbols:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         case .flags:
-            Image("ic_smileys_and_people")
+            return Image("ic_smileys_and_people")
         }
     }
 }

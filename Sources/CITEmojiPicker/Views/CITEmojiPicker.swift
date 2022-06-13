@@ -71,10 +71,10 @@ public struct CITEmojiPicker: View {
                     }
                 }
                 .coordinateSpace(name: "emoji")
-            }
             
-            EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
-                .padding([.bottom, .horizontal], Padding.medium)
+                EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
+                    .padding([.bottom, .horizontal], 16)
+            }
         }
         .frame(maxWidth: .infinity)
     }

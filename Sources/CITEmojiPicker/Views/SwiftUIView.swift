@@ -26,17 +26,17 @@ struct EmojiPickerBottomNavigatorView: View {
                     ZStack {
                         if emojiType == selectedSection {
                             Rectangle()
-                                .fill(Color.emojiGroupSelectedBackground)
+                                .fill(Color.selectedCategoryBackground)
                                 .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
                                 .cornerRadius(8)
                                 .padding(2)
                         }
                         
                         VStack {
-                            Image(asset: emojiType.imageAsset)
+                            emojiType.emojiImage
                                 .resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.emojiSearchForeground)
+                                .foregroundColor(Color.textColor)
                                 .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
                         }
                         .frame(maxWidth: .infinity)
