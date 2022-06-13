@@ -9,6 +9,7 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
+    @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     public var body: some View {
         VStack {
             Text("Hello World!")
