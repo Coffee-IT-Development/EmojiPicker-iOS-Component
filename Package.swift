@@ -32,7 +32,7 @@ let package = Package(
             name: "CITEmojiPickerTests",
             dependencies: ["CITEmojiPicker"],
             resources: [
-                .process("emojis-by-group")
+                .process("emojis-by-group.json")
             ]
         ),
     ]
