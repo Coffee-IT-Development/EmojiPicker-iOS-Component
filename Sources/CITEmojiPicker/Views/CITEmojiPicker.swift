@@ -12,10 +12,28 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     public var body: some View {
         VStack {
-            Text("Hello World!")
-                .foregroundColor(.textColor)
-            
-            let _ = print(viewModel.emojisByGroup)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(emojiType.rawValue)
+                                .foregroundColor(.textColor)
+                                .padding([.bottom, .leading], 8)
+                            
+                            UIGrid(columns: 5, list: viewModel.emojisByGroup[emojiType.rawValue] ?? []) { emoji in
+                                Text(emoji.emoji)
+                                    .font(.system(size: 28))
+                                    .padding(.horizontal, 7)
+                                    .padding(.vertical, 3)
+                                    .onTapGesture {
+                                        print(emoji.emoji)
+                                    }
+                            }
+                        }
+                        .id(emojiType)
+                    }
+                }
+            }
         }
         .frame(width: 200, height: 200)
     }
