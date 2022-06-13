@@ -35,7 +35,7 @@ public struct CITEmojiPicker: View {
                 }
             }
         }
-        .frame(width: 200, height: 200)
+        .frame(maxWidth: .infinity)
     }
     
     public init() {
