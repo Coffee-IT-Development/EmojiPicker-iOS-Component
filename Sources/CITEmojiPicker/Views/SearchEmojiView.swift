@@ -10,6 +10,7 @@ import SwiftUI
 public struct SearchEmojiView: View {
     @ObservedObject private var viewModel: CITEmojiPickerViewModel
     @Binding private var isSearchingForEmoji: Bool
+    @Binding private var keyboardIsOpen: Bool
     private let didAddEmoji: (String) -> Void
     
     public var body: some View {
@@ -29,35 +30,38 @@ public struct SearchEmojiView: View {
         .cornerRadius(10)
         .padding([.top, .horizontal], 16)
         
-        VStack(spacing: 0) {
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(viewModel.searchEmojis) { emoji in
-                        Text(emoji)
-                            .font(.system(size: 28))
-                            .padding(.bottom, 12)
-                            .onTapGesture {
-                                didAddEmoji(emoji)
-                            }
+        if keyboardIsOpen {
+            VStack(spacing: 0) {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.searchEmojis) { emoji in
+                            Text(emoji)
+                                .font(.system(size: 28))
+                                .padding(.bottom, 12)
+                                .onTapGesture {
+                                    didAddEmoji(emoji)
+                                }
+                        }
                     }
-                }
-                .frame(alignment: .leading)
-                .padding([.top, .horizontal], viewModel.searchEmojiText.isEmpty ? 0 : 16)
-                .onChange(of: viewModel.searchEmojiText) { _ in
-                    viewModel.updateSearchEmojiList()
-                    if viewModel.searchEmojiText.isEmpty {
-                        isSearchingForEmoji = false
-                    } else {
-                        isSearchingForEmoji = true
+                    .frame(alignment: .leading)
+                    .padding([.top, .horizontal], 16)
+                    .onChange(of: viewModel.searchEmojiText) { _ in
+                        viewModel.updateSearchEmojiList()
+                        if viewModel.searchEmojiText.isEmpty {
+                            isSearchingForEmoji = false
+                        } else {
+                            isSearchingForEmoji = true
+                        }
                     }
                 }
             }
         }
     }
     
-    init(viewModel: CITEmojiPickerViewModel, didAddEmoji: @escaping (String) -> Void, isSearchingForEmoji: Binding<Bool>) {
+    init(viewModel: CITEmojiPickerViewModel, didAddEmoji: @escaping (String) -> Void, isSearchingForEmoji: Binding<Bool>, keyboardIsOpen: Binding<Bool>) {
         self.viewModel = viewModel
         self.didAddEmoji = didAddEmoji
         self._isSearchingForEmoji = isSearchingForEmoji
+        self._keyboardIsOpen = keyboardIsOpen
     }
 }

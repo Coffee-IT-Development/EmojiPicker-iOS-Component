@@ -23,7 +23,8 @@ public struct CITEmojiPicker: View {
             SearchEmojiView(
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
-                isSearchingForEmoji: $isSearchingForEmoji
+                isSearchingForEmoji: $isSearchingForEmoji,
+                keyboardIsOpen: $keyboardHeightHelper.keyboardIsOpen
             )
             
             if !keyboardHeightHelper.keyboardIsOpen {
