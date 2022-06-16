@@ -81,6 +81,7 @@ public struct CITEmojiPicker: View {
                         }
                     }
                     .coordinateSpace(name: "emoji")
+                    .frame(height: 215)
                 
                     EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
                         .padding([.bottom, .horizontal], 16)
@@ -91,8 +92,7 @@ public struct CITEmojiPicker: View {
         }
         .ignoresSafeArea(.keyboard)
         .background(Color.sheetBackground)
-        .frame(maxWidth: .infinity)
-        .frame(height: 390)
+        .frame(maxWidth: .infinity, maxHeight: 390)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
