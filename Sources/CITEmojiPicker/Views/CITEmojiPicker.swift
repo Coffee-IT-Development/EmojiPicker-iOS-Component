@@ -13,11 +13,12 @@ public struct CITEmojiPicker: View {
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var searchEmojiTextfieldInput = ""
+    @State var isSearchingForEmoji = false
     private let didAddEmoji: (String) -> Void
     
     public var body: some View {
         VStack {
-            SearchEmojiView(viewModel: viewModel, didAddEmoji: didAddEmoji, isSearchingForEmoji: $viewModel.searchEmojiText)
+            SearchEmojiView(viewModel: viewModel, didAddEmoji: didAddEmoji, isSearchingForEmoji: $isSearchingForEmoji)
 //            HStack {
 //                Image("ic_magnifying_glass", bundle: .module)
 //                    .renderingMode(.template)
