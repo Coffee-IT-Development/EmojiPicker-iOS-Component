@@ -25,7 +25,6 @@ public struct CITEmojiPicker: View {
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji
             )
-            .offset(y: -self.keyboardHeightHelper.keyboardHeight)
             
             if !isSearchingForEmoji {
                 ScrollViewReader { reader in
@@ -90,12 +89,12 @@ public struct CITEmojiPicker: View {
                         .padding([.bottom, .horizontal], 16)
                 }
             } else {
-                EmptyView()
+                Spacer()
+                    .frame(height: keyboardHeightHelper.keyboardHeight)
             }
         }
         .background(Color.sheetBackground)
-        .frame(maxWidth: .infinity)
-        .frame(height: 392)
+        .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
