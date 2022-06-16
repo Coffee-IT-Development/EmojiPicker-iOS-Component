@@ -12,9 +12,12 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var searchEmojiTextfieldInput = ""
-    @State var isSearchingForEmoji = false
+    @State var isSearchingForEmoji: Bool {
+        !viewModel.searchEmojiText.isEmpty
+    }
+    
     private let didAddEmoji: (String) -> Void
+    private let gridLeadingPadding: CGFloat = 10
     
     public var body: some View {
         VStack {
@@ -45,7 +48,7 @@ public struct CITEmojiPicker: View {
                                     }
                                 }
                                 .id(emojiType)
-                                .padding(.leading, 10)
+                                .padding(.leading, gridLeadingPadding)
                                 .background(
                                     GeometryReader { proxy in
                                         if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
@@ -67,7 +70,7 @@ public struct CITEmojiPicker: View {
                         .background(GeometryReader {
                             Color.clear.preference(
                                 key: YOffsetScrollValuePreferenceKey.self,
-                                value: -$0.frame(in: .named("emoji")).origin.x - 10 // 10 is subtracted so it matches the grid padding
+                                value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
                             )
                         })
                         .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in

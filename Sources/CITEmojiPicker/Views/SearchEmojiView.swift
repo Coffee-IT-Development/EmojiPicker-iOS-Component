@@ -45,11 +45,6 @@ public struct SearchEmojiView: View {
                 .padding([.top, .horizontal], viewModel.searchEmojiText.isEmpty ? 0 : 16)
                 .onChange(of: viewModel.searchEmojiText) { _ in
                     viewModel.updateSearchEmojiList()
-                    if viewModel.searchEmojiText.isEmpty {
-                        isSearchingForEmoji = false
-                    } else {
-                        isSearchingForEmoji = true
-                    }
                 }
             }
         }
