@@ -24,9 +24,9 @@ public struct CITEmojiPicker: View {
                     .foregroundColor(Color.textColor)
                     .padding(.leading)
                 
-                Text("search text: \(searchEmojiString)")
+                Text("search text: \(viewModel.searchEmojiText)")
                 
-                TextField("Search Emoji", text: $searchEmojiString)
+                TextField("Search Emoji", text: $viewModel.searchEmojiText)
                     .foregroundColor(Color.textColor)
                     .keyboardType(.alphabet)
                     .disableAutocorrection(true)
@@ -53,15 +53,15 @@ public struct CITEmojiPicker: View {
                     }
                     .frame(alignment: .leading)
                     .padding([.top, .horizontal], 16)
-                    .onChange(of: viewModel.searchEmojiText) { newText in
-                        print(newText)
-                        viewModel.updateSearchEmojiList()
-                        if viewModel.searchEmojiText.isEmpty {
-                            isSearchingForEmoji = false
-                        } else {
-                            isSearchingForEmoji = true
-                        }
-                    }
+//                    .onChange(of: viewModel.searchEmojiText) { newText in
+//                        print(newText)
+//                        viewModel.updateSearchEmojiList()
+//                        if viewModel.searchEmojiText.isEmpty {
+//                            isSearchingForEmoji = false
+//                        } else {
+//                            isSearchingForEmoji = true
+//                        }
+//                    }
                 }
             }
             if !isSearchingForEmoji {
