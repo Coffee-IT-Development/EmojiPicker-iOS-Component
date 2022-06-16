@@ -31,7 +31,7 @@ public struct SearchEmojiView: View {
         .frame(height: 36)
         .background(Color.searchBarBackground)
         .cornerRadius(10)
-        .padding(.horizontal, 16)
+        .padding([.top, .horizontal], 16)
         
         VStack(spacing: 0) {
             ScrollView(.horizontal) {
