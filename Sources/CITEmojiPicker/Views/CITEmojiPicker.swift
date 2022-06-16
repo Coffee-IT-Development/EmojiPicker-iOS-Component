@@ -12,9 +12,7 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var isSearchingForEmoji: Bool {
-        !viewModel.searchEmojiText.isEmpty
-    }
+    @State var isSearchingForEmoji = false
     
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
