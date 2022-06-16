@@ -12,8 +12,6 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var isSearchingForEmoji: Bool = false
-    @State var searchEmojiString = ""
     private let didAddEmoji: (String) -> Void
     
     public var body: some View {
@@ -64,7 +62,7 @@ public struct CITEmojiPicker: View {
 //                    }
                 }
             }
-            if !isSearchingForEmoji {
+            if !viewModel.searchEmojis {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
