@@ -9,7 +9,6 @@ import SwiftUI
 
 public struct SearchEmojiView: View {
     @ObservedObject private var viewModel: CITEmojiPickerViewModel
-    @ObservedObject var keyboardHeightHelper: KeyboardHeightHelper
     @Binding private var isSearchingForEmoji: Bool
     private let didAddEmoji: (String) -> Void
     
@@ -45,7 +44,7 @@ public struct SearchEmojiView: View {
                 .frame(alignment: .leading)
                 .padding([.top, .horizontal], viewModel.searchEmojiText.isEmpty ? 0 : 16)
                 .onChange(of: viewModel.searchEmojiText) { _ in
-                    viewModel.updateSearchEmojiList(keyboardIsOpen: keyboardHeightHelper.keyboardIsOpen)
+                    viewModel.updateSearchEmojiList()
                     if viewModel.searchEmojiText.isEmpty {
                         isSearchingForEmoji = false
                     } else {
@@ -56,9 +55,8 @@ public struct SearchEmojiView: View {
         }
     }
     
-    init(viewModel: CITEmojiPickerViewModel, keyboardHeightHelper: KeyboardHeightHelper, didAddEmoji: @escaping (String) -> Void, isSearchingForEmoji: Binding<Bool>) {
+    init(viewModel: CITEmojiPickerViewModel, didAddEmoji: @escaping (String) -> Void, isSearchingForEmoji: Binding<Bool>) {
         self.viewModel = viewModel
-        self.keyboardHeightHelper = keyboardHeightHelper
         self.didAddEmoji = didAddEmoji
         self._isSearchingForEmoji = isSearchingForEmoji
     }

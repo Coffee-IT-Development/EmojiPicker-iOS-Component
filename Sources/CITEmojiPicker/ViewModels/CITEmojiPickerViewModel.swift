@@ -45,13 +45,7 @@ public class CITEmojiPickerViewModel: ObservableObject {
         searchEmojiArray = emojiArray
     }
     
-    func updateSearchEmojiList(keyboardIsOpen: Bool) {
-        if !keyboardIsOpen {
-            searchEmojis = [String]()
-            searchEmojiText = ""
-            return
-        }
-        
+    func updateSearchEmojiList() {
         var searchEmojisList = [String]()
         for emoji in searchEmojiArray {
             if emoji.name.contains(searchEmojiText.lowercased()) {
