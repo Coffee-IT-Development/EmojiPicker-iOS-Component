@@ -40,7 +40,7 @@ public struct SearchEmojiView: View {
                             }
                     }
                 }
-                .frame(height: 36, alignment: .leading)
+                .frame(alignment: .leading)
                 .padding([.top, .horizontal], viewModel.searchEmojiText.isEmpty ? 0 : 16)
                 .onChange(of: viewModel.searchEmojiText) { _ in
                     viewModel.updateSearchEmojiList()

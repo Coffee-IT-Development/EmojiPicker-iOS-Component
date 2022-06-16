@@ -81,7 +81,6 @@ public struct CITEmojiPicker: View {
                         }
                     }
                     .coordinateSpace(name: "emoji")
-                    .frame(height: 215)
                 
                     EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
                         .padding([.bottom, .horizontal], 16)
