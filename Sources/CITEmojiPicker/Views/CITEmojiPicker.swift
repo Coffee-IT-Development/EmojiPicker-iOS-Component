@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
-    @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+    @ObservedObject var keyboardHelper = KeyboardHelper()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var isSearchingForEmoji = false
@@ -24,10 +24,10 @@ public struct CITEmojiPicker: View {
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji,
-                keyboardIsOpen: $keyboardHeightHelper.keyboardIsOpen
+                keyboardIsOpen: $keyboardHelper.keyboardIsOpen
             )
             
-            if !keyboardHeightHelper.keyboardIsOpen {
+            if !keyboardHelper.keyboardIsOpen {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
@@ -91,7 +91,7 @@ public struct CITEmojiPicker: View {
                 }
             } else {
                 Spacer()
-                    .frame(height: keyboardHeightHelper.keyboardHeight - 40)
+                    .frame(height: keyboardHelper.keyboardHeight - 40)
             }
         }
         .background(Color.sheetBackground)

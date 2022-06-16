@@ -1,5 +1,5 @@
 //
-//  KeyboardHeightHelper.swift
+//  KeyboardHelper.swift
 //  
 //
 //  Created by Hugo de Groot on 16/06/2022.
@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import Foundation
 
-class KeyboardHeightHelper: ObservableObject {
+class KeyboardHelper: ObservableObject {
     @Published var keyboardHeight: CGFloat = 0
     @Published var keyboardIsOpen = false
     
