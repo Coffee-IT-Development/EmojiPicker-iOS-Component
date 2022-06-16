@@ -35,6 +35,7 @@ public struct SearchEmojiView: View {
                     ForEach(viewModel.searchEmojis) { emoji in
                         Text(emoji)
                             .font(.system(size: 28))
+                            .padding(.bottom, 3)
                             .onTapGesture {
                                 didAddEmoji(emoji)
                             }
