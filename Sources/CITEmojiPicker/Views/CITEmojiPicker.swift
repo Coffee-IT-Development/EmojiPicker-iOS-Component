@@ -50,7 +50,8 @@ public struct CITEmojiPicker: View {
                     }
                     .frame(alignment: .leading)
                     .padding([.top, .horizontal], 16)
-                    .onChange(of: viewModel.searchEmojiText) { _ in
+                    .onChange(of: viewModel.searchEmojiText) { newText in
+                        print(newText)
                         viewModel.updateSearchEmojiList()
                         if viewModel.searchEmojiText.isEmpty {
                             isSearchingForEmoji = false
@@ -123,7 +124,7 @@ public struct CITEmojiPicker: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 320)
+        .frame(maxWidth: .infinity, maxHeight: 350)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
