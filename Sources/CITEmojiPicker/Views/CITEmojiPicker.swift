@@ -91,7 +91,8 @@ public struct CITEmojiPicker: View {
         }
         .ignoresSafeArea(.keyboard)
         .background(Color.sheetBackground)
-        .frame(maxWidth: .infinity, maxHeight: 390)
+        .frame(maxWidth: .infinity)
+        .frame(height: 390)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
