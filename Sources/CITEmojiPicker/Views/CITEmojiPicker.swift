@@ -13,6 +13,7 @@ public struct CITEmojiPicker: View {
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var isSearchingForEmoji: Bool = false
+    @State var searchEmojiString = ""
     private let didAddEmoji: (String) -> Void
     
     public var body: some View {
@@ -23,9 +24,9 @@ public struct CITEmojiPicker: View {
                     .foregroundColor(Color.textColor)
                     .padding(.leading)
                 
-                Text(viewModel.searchEmojiText)
+                Text("search text: \(searchEmojiString)")
                 
-                TextField("Search Emoji", text: $viewModel.searchEmojiText)
+                TextField("Search Emoji", text: $searchEmojiString)
                     .foregroundColor(Color.textColor)
                     .keyboardType(.alphabet)
                     .disableAutocorrection(true)
