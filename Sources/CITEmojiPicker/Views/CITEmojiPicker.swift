@@ -21,7 +21,7 @@ public struct CITEmojiPicker: View {
         if !keyboardHeightHelper.keyboardIsOpen {
             viewModel.searchEmojiText = ""
         }
-        keyboardHeightHelper.keyboardIsOpen
+        return keyboardHeightHelper.keyboardIsOpen
     }
     
     public var body: some View {
