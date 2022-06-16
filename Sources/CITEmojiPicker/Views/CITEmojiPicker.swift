@@ -90,7 +90,7 @@ public struct CITEmojiPicker: View {
                         .padding([.bottom, .horizontal], 16)
                 }
             } else {
-                Spacer()
+                EmptyView()
             }
         }
         .background(Color.sheetBackground)
