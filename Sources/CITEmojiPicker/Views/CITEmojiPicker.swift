@@ -83,14 +83,14 @@ public struct CITEmojiPicker: View {
                     .coordinateSpace(name: "emoji")
                 
                     EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
-                        .padding(.horizontal, 16)
+                        .padding([.bottom, .horizontal], 16)
                 }
             } else {
                 Spacer()
             }
         }
         .background(Color.sheetBackground)
-        .frame(maxWidth: .infinity, maxHeight: 400)
+        .frame(maxWidth: .infinity, maxHeight: 390)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
