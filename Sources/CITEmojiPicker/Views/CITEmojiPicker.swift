@@ -89,6 +89,7 @@ public struct CITEmojiPicker: View {
                 Spacer()
             }
         }
+        .ignoresSafeArea(.keyboard)
         .background(Color.sheetBackground)
         .frame(maxWidth: .infinity, maxHeight: 390)
     }
