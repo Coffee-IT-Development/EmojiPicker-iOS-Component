@@ -67,7 +67,7 @@ public struct CITEmojiPicker: View {
                         .background(GeometryReader {
                             Color.clear.preference(
                                 key: YOffsetScrollValuePreferenceKey.self,
-                                value: -$0.frame(in: .named("emoji")).origin.x
+                                value: -$0.frame(in: .named("emoji")).origin.x + 10 // 10 is added so it matches the grid padding
                             )
                         })
                         .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
