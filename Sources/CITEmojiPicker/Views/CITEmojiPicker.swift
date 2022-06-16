@@ -25,7 +25,7 @@ public struct CITEmojiPicker: View {
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji
             )
-            .offset(y: self.keyboardHeightHelper.keyboardHeight)
+            .offset(y: -self.keyboardHeightHelper.keyboardHeight)
             
             if !isSearchingForEmoji {
                 ScrollViewReader { reader in
@@ -99,23 +99,5 @@ public struct CITEmojiPicker: View {
     
     public init(didAddEmoji: @escaping (String) -> Void) {
         self.didAddEmoji = didAddEmoji
-        listenForKeyboardNotifications()
-    }
-    
-    private func listenForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification,
-                                               object: nil,
-                                               queue: .main) { (notification) in
-            guard let userInfo = notification.userInfo,
-                  let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-            
-            self.keyboardHeight = keyboardRect.height
-        }
-        
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification,
-                                               object: nil,
-                                               queue: .main) { (notification) in
-            self.keyboardHeight = 0
-        }
     }
 }
