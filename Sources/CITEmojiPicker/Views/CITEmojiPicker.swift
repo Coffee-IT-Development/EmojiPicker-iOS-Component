@@ -77,7 +77,7 @@ public struct CITEmojiPicker: View {
                     .padding([.bottom, .horizontal], 16)
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: 373)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
