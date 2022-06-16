@@ -90,7 +90,7 @@ public struct CITEmojiPicker: View {
             }
         }
         .background(Color.sheetBackground)
-        .frame(maxWidth: .infinity, maxHeight: 385)
+        .frame(maxWidth: .infinity, maxHeight: 400)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
