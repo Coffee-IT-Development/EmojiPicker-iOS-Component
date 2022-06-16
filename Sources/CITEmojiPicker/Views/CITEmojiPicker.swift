@@ -90,7 +90,7 @@ public struct CITEmojiPicker: View {
                 }
             } else {
                 Spacer()
-                    .frame(height: keyboardHeightHelper.keyboardHeight)
+                    .frame(height: keyboardHeightHelper.keyboardHeight - 20)
             }
         }
         .background(Color.sheetBackground)
