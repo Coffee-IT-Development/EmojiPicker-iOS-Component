@@ -74,10 +74,10 @@ public struct CITEmojiPicker: View {
                 .coordinateSpace(name: "emoji")
             
                 EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
-                    .padding([.bottom, .horizontal], 16)
+                    .padding(.horizontal, 16)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 339)
+        .frame(maxWidth: .infinity, maxHeight: 330)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
