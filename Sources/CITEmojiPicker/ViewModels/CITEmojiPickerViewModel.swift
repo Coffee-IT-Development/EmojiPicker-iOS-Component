@@ -12,7 +12,7 @@ public class CITEmojiPickerViewModel: ObservableObject {
     @Published var searchEmojis = [String]()
     
     public let emojiGroups: EmojiGroups
-    public var searchEmojiText = ""
+    @Published public var searchEmojiText = ""
     private var searchEmojiArray = [EmojisByGroup]()
     
     public init() {
@@ -45,7 +45,7 @@ public class CITEmojiPickerViewModel: ObservableObject {
         searchEmojiArray = emojiArray
     }
     
-    func updateSearchEmojiList() {
+    func updateSearchEmojiList(searchEmojiText: String) {
         var searchEmojisList = [String]()
         for emoji in searchEmojiArray {
             if emoji.name.contains(searchEmojiText.lowercased()) {

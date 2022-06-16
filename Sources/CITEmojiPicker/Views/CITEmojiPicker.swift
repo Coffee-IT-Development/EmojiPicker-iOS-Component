@@ -12,13 +12,53 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var isSearchingForEmoji: Bool = false
+    @State var searchEmojiTextfieldInput = ""
     private let didAddEmoji: (String) -> Void
     
     public var body: some View {
         VStack {
-            SearchEmojiView(viewModel: viewModel, didAddEmoji: didAddEmoji, isSearchingForEmoji: $isSearchingForEmoji)
-            
+            SearchEmojiView(viewModel: viewModel, didAddEmoji: didAddEmoji, isSearchingForEmoji: $viewModel.searchEmojiText)
+//            HStack {
+//                Image("ic_magnifying_glass", bundle: .module)
+//                    .renderingMode(.template)
+//                    .foregroundColor(Color.textColor)
+//                    .padding(.leading)
+//
+//                Text("search text: \(searchEmojiTextfieldInput)")
+//
+//                TextField("Search Emoji", text: $searchEmojiTextfieldInput)
+//                    .foregroundColor(Color.textColor)
+//                    .keyboardType(.alphabet)
+//                    .disableAutocorrection(true)
+////                    .placeholder(when: viewModel.searchEmojiText.isEmpty) {
+////                        Text("Search Emoji")
+////                            .foregroundColor(Color.textColor)
+////                    }
+//            }
+//            .frame(height: 36)
+//            .background(Color.searchBarBackground)
+//            .cornerRadius(10)
+//            .padding(.horizontal, 16)
+//
+//            VStack(spacing: 0) {
+//                ScrollView(.horizontal) {
+//                    HStack {
+//                        ForEach(viewModel.searchEmojis) { emoji in
+//                            Text(emoji)
+//                                .font(.system(size: 28))
+//                                .onTapGesture {
+//                                    didAddEmoji(emoji)
+//                                }
+//                        }
+//                    }
+//                    .frame(alignment: .leading)
+//                    .padding([.top, .horizontal], 16)
+//                    .onChange(of: searchEmojiTextfieldInput) { newText in
+//                        print(newText)
+//                        viewModel.updateSearchEmojiList()
+//                    }
+//                }
+//            }
             if viewModel.searchEmojis.isEmpty {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
