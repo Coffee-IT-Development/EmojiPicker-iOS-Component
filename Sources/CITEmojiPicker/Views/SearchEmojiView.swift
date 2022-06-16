@@ -14,7 +14,7 @@ public struct SearchEmojiView: View {
     
     public var body: some View {
         HStack {
-            Image("ic_magnifying_glass", bundle: .module)
+            Image(systemName: "magnifyingglass")
                 .renderingMode(.template)
                 .foregroundColor(Color.textColor)
                 .padding(.leading)

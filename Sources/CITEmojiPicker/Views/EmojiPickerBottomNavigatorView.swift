@@ -48,7 +48,7 @@ struct EmojiPickerBottomNavigatorView: View {
                 }
             }
         }
-        .frame(height: 34)
+        .frame(height: 32)
     }
     
     init(selectedSection: Binding<EmojiTypes>, reader: ScrollViewProxy) {
