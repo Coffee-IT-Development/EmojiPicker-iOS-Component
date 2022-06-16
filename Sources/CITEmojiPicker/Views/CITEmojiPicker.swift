@@ -17,6 +17,12 @@ public struct CITEmojiPicker: View {
     
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
+    private var keyboardIsOpen: Bool {
+        if !keyboardHeightHelper.keyboardIsOpen {
+            viewModel.searchEmojiText = ""
+        }
+        keyboardHeightHelper.keyboardIsOpen
+    }
     
     public var body: some View {
         VStack {

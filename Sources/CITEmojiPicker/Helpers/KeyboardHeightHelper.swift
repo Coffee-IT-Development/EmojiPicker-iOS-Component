@@ -10,6 +10,7 @@ import Foundation
 
 class KeyboardHeightHelper: ObservableObject {
     @Published var keyboardHeight: CGFloat = 0
+    @Published var keyboardIsOpen = false
     
     init() {
         listenForKeyboardNotifications()
@@ -23,12 +24,14 @@ class KeyboardHeightHelper: ObservableObject {
                   let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
             self.keyboardHeight = keyboardRect.height
+            self.keyboardIsOpen = true
         }
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification,
                                                object: nil,
                                                queue: .main) { (notification) in
             self.keyboardHeight = 0
+            self.keyboardIsOpen = false
         }
     }
 }
