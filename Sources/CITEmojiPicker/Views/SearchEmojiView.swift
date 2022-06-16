@@ -33,25 +33,27 @@ public struct SearchEmojiView: View {
         .cornerRadius(10)
         .padding([.top, .horizontal], 16)
         
-        VStack(spacing: 0) {
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(viewModel.searchEmojis) { emoji in
-                        Text(emoji)
-                            .font(.system(size: 28))
-                            .onTapGesture {
-                                didAddEmoji(emoji)
-                            }
+        if !viewModel.searchEmojiText.isEmpty {
+            VStack(spacing: 0) {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.searchEmojis) { emoji in
+                            Text(emoji)
+                                .font(.system(size: 28))
+                                .onTapGesture {
+                                    didAddEmoji(emoji)
+                                }
+                        }
                     }
-                }
-                .frame(alignment: .leading)
-                .padding([.top, .horizontal], 16)
-                .onChange(of: viewModel.searchEmojiText) { _ in
-                    viewModel.updateSearchEmojiList()
-                    if viewModel.searchEmojiText.isEmpty {
-                        isSearchingForEmoji = false
-                    } else {
-                        isSearchingForEmoji = true
+                    .frame(alignment: .leading)
+                    .padding([.top, .horizontal], 16)
+                    .onChange(of: viewModel.searchEmojiText) { _ in
+                        viewModel.updateSearchEmojiList()
+                        if viewModel.searchEmojiText.isEmpty {
+                            isSearchingForEmoji = false
+                        } else {
+                            isSearchingForEmoji = true
+                        }
                     }
                 }
             }
