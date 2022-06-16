@@ -19,16 +19,14 @@ public struct SearchEmojiView: View {
                 .foregroundColor(Color.textColor)
                 .padding(.leading)
             
-            Text("search text: \(viewModel.searchEmojiText)")
-            
             TextField("Search Emoji", text: $viewModel.searchEmojiText)
                 .foregroundColor(Color.textColor)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
-//                    .placeholder(when: viewModel.searchEmojiText.isEmpty) {
-//                        Text("Search Emoji")
-//                            .foregroundColor(Color.textColor)
-//                    }
+//                .placeholder(when: viewModel.searchEmojiText.isEmpty) {
+//                    Text("Search Emoji")
+//                        .foregroundColor(Color.textColor)
+//                }
         }
         .frame(height: 36)
         .background(Color.searchBarBackground)
@@ -48,8 +46,7 @@ public struct SearchEmojiView: View {
                 }
                 .frame(alignment: .leading)
                 .padding([.top, .horizontal], 16)
-                .onChange(of: viewModel.searchEmojiText) { newText in
-                    print(newText)
+                .onChange(of: viewModel.searchEmojiText) { _ in
                     viewModel.updateSearchEmojiList()
                     if viewModel.searchEmojiText.isEmpty {
                         isSearchingForEmoji = false
