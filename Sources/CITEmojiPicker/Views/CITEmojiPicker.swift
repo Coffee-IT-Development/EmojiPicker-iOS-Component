@@ -12,6 +12,7 @@ public struct CITEmojiPicker: View {
     @ObservedObject public var viewModel = CITEmojiPickerViewModel()
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
+    private let didAddEmoji: (String) -> Void
     
     public var body: some View {
         VStack {
@@ -30,7 +31,7 @@ public struct CITEmojiPicker: View {
                                         .padding(.horizontal, 7)
                                         .padding(.vertical, 3)
                                         .onTapGesture {
-                                            print(emoji.emoji)
+                                            didAddEmoji(emoji.emoji)
                                         }
                                 }
                             }
@@ -79,7 +80,7 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity)
     }
     
-    public init() {
-        
+    public init(didAddEmoji: @escaping (String) -> Void) {
+        self.didAddEmoji = didAddEmoji
     }
 }
