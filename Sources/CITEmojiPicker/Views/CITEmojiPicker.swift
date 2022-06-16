@@ -25,7 +25,7 @@ public struct CITEmojiPicker: View {
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji
             )
-            .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+            .offset(y: self.keyboardHeightHelper.keyboardHeight)
             
             if !isSearchingForEmoji {
                 ScrollViewReader { reader in
