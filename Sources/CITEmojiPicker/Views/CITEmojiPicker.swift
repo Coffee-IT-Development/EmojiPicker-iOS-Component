@@ -23,6 +23,8 @@ public struct CITEmojiPicker: View {
                     .foregroundColor(Color.textColor)
                     .padding(.leading)
                 
+                Text(viewModel.searchEmojiText)
+                
                 TextField("Search Emoji", text: $viewModel.searchEmojiText)
                     .foregroundColor(Color.textColor)
                     .keyboardType(.alphabet)
@@ -124,7 +126,7 @@ public struct CITEmojiPicker: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 350)
+        .frame(maxWidth: .infinity, maxHeight: 370)
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
