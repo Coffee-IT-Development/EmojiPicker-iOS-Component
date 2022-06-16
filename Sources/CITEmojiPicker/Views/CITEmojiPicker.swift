@@ -45,7 +45,7 @@ public struct CITEmojiPicker: View {
                                     }
                                 }
                                 .id(emojiType)
-                                .padding(.leading, 16)
+                                .padding(.leading, 12)
                                 .background(
                                     GeometryReader { proxy in
                                         if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
