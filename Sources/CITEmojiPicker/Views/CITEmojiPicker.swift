@@ -14,20 +14,16 @@ public struct CITEmojiPicker: View {
     @State var selectedSection: EmojiTypes = .smileysAndEmotion
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var isSearchingForEmoji = false
+    @State var keyboardIsOpen = false
     
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
-    private var keyboardIsOpen: Bool {
-        if !keyboardHeightHelper.keyboardIsOpen {
-            viewModel.searchEmojiText = ""
-        }
-        return keyboardHeightHelper.keyboardIsOpen
-    }
     
     public var body: some View {
         VStack {
             SearchEmojiView(
                 viewModel: viewModel,
+                keyboardHeightHelper: keyboardHeightHelper,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji
             )
