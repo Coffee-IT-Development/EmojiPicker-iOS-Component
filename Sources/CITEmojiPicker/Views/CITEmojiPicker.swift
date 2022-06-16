@@ -62,7 +62,7 @@ public struct CITEmojiPicker: View {
 //                    }
                 }
             }
-            if !viewModel.searchEmojis {
+            if viewModel.searchEmojis.isEmpty {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
@@ -123,6 +123,8 @@ public struct CITEmojiPicker: View {
                     EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
                         .padding(.horizontal, 16)
                 }
+            } else {
+                Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: 370)
