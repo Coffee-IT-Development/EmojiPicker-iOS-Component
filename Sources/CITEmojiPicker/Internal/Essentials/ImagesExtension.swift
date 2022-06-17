@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Image {
+extension Image {
     internal static let icActivity = Image("ic_activity", bundle: .module)
     internal static let icAnimalsAndNature = Image("ic_animals_and_nature", bundle: .module)
     internal static let icFlags = Image("ic_flags", bundle: .module)

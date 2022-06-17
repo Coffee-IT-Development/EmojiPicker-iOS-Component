@@ -8,8 +8,8 @@
 
 import Foundation
 
-public enum JSONFileDecoder {
-    public static func decodeEmojis<T: Codable>() -> T {
+enum JSONFileDecoder {
+    static func decodeEmojis<T: Codable>() -> T {
         let data = Bundle.module.dataFromResource("emojis-by-group")
         do {
             let decodedResponse = try JSONDecoder().decode(T.self, from: data)

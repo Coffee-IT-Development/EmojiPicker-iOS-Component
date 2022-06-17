@@ -25,14 +25,14 @@ let package = Package(
             name: "CITEmojiPicker",
             dependencies: [],
             resources: [
-                .process("Essentials/emojis-by-group.json")
+                .process("Internal/Essentials/emojis-by-group.json")
             ]
         ),
         .testTarget(
             name: "CITEmojiPickerTests",
             dependencies: ["CITEmojiPicker"],
             resources: [
-                .process("Essentials/emojis-by-group.json")
+                .process("Internal/Essentials/emojis-by-group.json")
             ]
         ),
     ]

@@ -10,7 +10,7 @@ import SwiftUI
 
 // 'Content' here is used to store the View you defined in the Block
 // 'T' is the object type of your list.
-public struct UIGrid<Content: View, T: Hashable>: View {
+struct UIGrid<Content: View, T: Hashable>: View {
     private let columns: Int
     
     // Multi-dimensional array of your list. Modified as per rendering needs.
@@ -21,7 +21,7 @@ public struct UIGrid<Content: View, T: Hashable>: View {
     
     private var emptySpaces: Int = 0
     
-    public var body: some View {
+    var body: some View {
         HStack {
             ForEach(0 ..< self.list.count, id: \.self) { i  in
                 VStack {
@@ -35,7 +35,7 @@ public struct UIGrid<Content: View, T: Hashable>: View {
         }
     }
     
-    public init(columns: Int, list: [T], @ViewBuilder content:@escaping (T) -> Content) {
+    init(columns: Int, list: [T], @ViewBuilder content:@escaping (T) -> Content) {
         self.columns = columns
         self.content = content
         self.setupList(list)
