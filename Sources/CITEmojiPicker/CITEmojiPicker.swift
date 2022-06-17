@@ -62,7 +62,8 @@ public struct CITEmojiPicker: View {
                                             .padding(.vertical, 3)
                                             .onTapGesture {
                                                 didAddEmoji(emoji.emoji)
-                                                viewModel.setRecentEmojis(emoji: emoji)
+                                                viewModel.setRecentEmojis(emoji: emoji.emoji)
+                                                viewModel.getRecentEmojis()
                                             }
                                     }
                                 }
