@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension Color {
+extension Color {
     static let emojiCategoriesBackground = Color("emoji_categories_background", bundle: .module)
     static let searchBarBackground = Color("search_bar_background", bundle: .module)
     static let selectedCategoryBackground = Color("selected_category_background", bundle: .module)

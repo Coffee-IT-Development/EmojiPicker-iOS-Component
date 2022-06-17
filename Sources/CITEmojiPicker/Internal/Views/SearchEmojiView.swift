@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-public struct SearchEmojiView: View {
+struct SearchEmojiView: View {
     @ObservedObject private var viewModel: CITEmojiPickerViewModel
     @Binding private var isSearchingForEmoji: Bool
     
     private let didAddEmoji: (String) -> Void
     private let searchEmojiPlaceholder: String
     
-    public var body: some View {
+    var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .renderingMode(.template)

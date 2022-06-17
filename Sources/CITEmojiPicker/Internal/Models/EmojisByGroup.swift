@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EmojisByGroup: Identifiable, Codable, Hashable {
+struct EmojisByGroup: Identifiable, Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case emoji
         case skinToneSupport = "skin_tone_support"
@@ -19,7 +19,7 @@ public struct EmojisByGroup: Identifiable, Codable, Hashable {
         case skinToneSupportUnicodeVersion = "skin_tone_support_unicode_version"
     }
     
-    public var id = UUID()
+    var id = UUID()
     let emoji: String
     let skinToneSupport: Bool
     let name: String
@@ -29,4 +29,4 @@ public struct EmojisByGroup: Identifiable, Codable, Hashable {
     let skinToneSupportUnicodeVersion: String?
 }
 
-public typealias EmojiGroups = [String: [EmojisByGroup]]
+typealias EmojiGroups = [String: [EmojisByGroup]]

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public class CITEmojiPickerViewModel: ObservableObject {
+class CITEmojiPickerViewModel: ObservableObject {
     @Published var emojisByGroup: EmojiGroups = [:]
     @Published var searchEmojis = [String]()
     @Published var searchEmojiText = ""
@@ -16,13 +16,13 @@ public class CITEmojiPickerViewModel: ObservableObject {
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
     
-    public init() {
+    init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         emojisByGroup = filterEmojis()
         fillSearchEmojiList()
     }
     
-    func filterEmojis() -> EmojiGroups {
+    private func filterEmojis() -> EmojiGroups {
         var emojisByGroup: EmojiGroups = [:]
         var emojiGroup: [EmojisByGroup] = []
         for emojiType in EmojiTypes.allCases {
@@ -36,7 +36,7 @@ public class CITEmojiPickerViewModel: ObservableObject {
         return emojisByGroup
     }
     
-    func fillSearchEmojiList() {
+    private func fillSearchEmojiList() {
         var emojiArray = [EmojisByGroup]()
         for emojiType in EmojiTypes.allCases {
             for emoji in emojisByGroup[emojiType.rawValue] ?? [] {
