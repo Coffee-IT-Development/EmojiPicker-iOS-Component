@@ -51,6 +51,10 @@ public struct CITEmojiPicker: View {
                                                     viewModel.getRecentEmojis()
                                                 }
                                         }
+                                        
+                                        if emojiGroup.isEmpty {
+                                            Spacer()
+                                        }
                                     }
                                     .id(emojiType)
                                     .padding(.leading, gridLeadingPadding)
