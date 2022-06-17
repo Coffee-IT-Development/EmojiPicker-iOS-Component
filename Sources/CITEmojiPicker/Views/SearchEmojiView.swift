@@ -1,8 +1,9 @@
 //
 //  SearchEmojiView.swift
-//  
+//  CITEmojiPicker
 //
 //  Created by Hugo de Groot on 16/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import SwiftUI
@@ -10,7 +11,9 @@ import SwiftUI
 public struct SearchEmojiView: View {
     @ObservedObject private var viewModel: CITEmojiPickerViewModel
     @Binding private var isSearchingForEmoji: Bool
+    
     private let didAddEmoji: (String) -> Void
+    let searchEmojiPlaceHolder: String
     
     public var body: some View {
         HStack {
@@ -55,9 +58,15 @@ public struct SearchEmojiView: View {
         }
     }
     
-    init(viewModel: CITEmojiPickerViewModel, didAddEmoji: @escaping (String) -> Void, isSearchingForEmoji: Binding<Bool>) {
+    init(
+        viewModel: CITEmojiPickerViewModel,
+        didAddEmoji: @escaping (String) -> Void,
+        isSearchingForEmoji: Binding<Bool>,
+        searchEmojiPlaceHolder: String
+    ) {
         self.viewModel = viewModel
         self.didAddEmoji = didAddEmoji
         self._isSearchingForEmoji = isSearchingForEmoji
+        self.searchEmojiPlaceHolder = searchEmojiPlaceHolder
     }
 }

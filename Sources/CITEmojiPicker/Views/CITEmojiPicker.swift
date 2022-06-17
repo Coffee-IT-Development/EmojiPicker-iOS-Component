@@ -14,6 +14,7 @@ public struct CITEmojiPicker: View {
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var isSearchingForEmoji = false
     
+    let searchEmojiPlaceHolder: String
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
     
@@ -22,7 +23,8 @@ public struct CITEmojiPicker: View {
             SearchEmojiView(
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
-                isSearchingForEmoji: $isSearchingForEmoji
+                isSearchingForEmoji: $isSearchingForEmoji,
+                searchEmojiPlaceHolder: searchEmojiPlaceHolder
             )
             
             if !isSearchingForEmoji {
@@ -84,7 +86,10 @@ public struct CITEmojiPicker: View {
                     }
                     .coordinateSpace(name: "emoji")
                 
-                    EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
+                    EmojiPickerBottomNavigatorView(
+                        selectedSection: $selectedSection,
+                        reader: reader
+                    )
                         .padding([.bottom, .horizontal], 16)
                 }
             } else {
@@ -95,7 +100,8 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void) {
+    public init(didAddEmoji: @escaping (String) -> Void, searchEmojiPlaceHolder: String) {
         self.didAddEmoji = didAddEmoji
+        self.searchEmojiPlaceHolder = searchEmojiPlaceHolder
     }
 }
