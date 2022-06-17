@@ -9,12 +9,13 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
-    @ObservedObject public var viewModel = CITEmojiPickerViewModel()
-    @ObservedObject var keyboardHelper = KeyboardHelper()
-    @State var selectedSection: EmojiTypes = .smileysAndEmotion
-    @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var isSearchingForEmoji = false
+    @ObservedObject private var viewModel = CITEmojiPickerViewModel()
+    @ObservedObject private var keyboardHelper = KeyboardHelper()
+    @State private var selectedSection: EmojiTypes = .smileysAndEmotion
+    @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
+    @State private var isSearchingForEmoji = false
     
+    private let searchEmojiPlaceholder: String
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
     
@@ -24,7 +25,8 @@ public struct CITEmojiPicker: View {
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji,
-                keyboardIsOpen: $keyboardHelper.keyboardIsOpen
+                keyboardIsOpen: $keyboardHelper.keyboardIsOpen,
+                searchEmojiPlaceholder: searchEmojiPlaceholder
             )
             
             if !keyboardHelper.keyboardIsOpen {
@@ -86,7 +88,10 @@ public struct CITEmojiPicker: View {
                     }
                     .coordinateSpace(name: "emoji")
                 
-                    EmojiPickerBottomNavigatorView(selectedSection: $selectedSection, reader: reader)
+                    EmojiPickerBottomNavigatorView(
+                        selectedSection: $selectedSection,
+                        reader: reader
+                    )
                         .padding([.bottom, .horizontal], 16)
                 }
             } else {
@@ -98,7 +103,8 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void) {
+    public init(searchEmojiPlaceholder: String, didAddEmoji: @escaping (String) -> Void) {
+        self.searchEmojiPlaceholder = searchEmojiPlaceholder
         self.didAddEmoji = didAddEmoji
     }
 }

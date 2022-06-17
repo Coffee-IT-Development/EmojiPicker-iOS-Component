@@ -1,8 +1,9 @@
 //
 //  EmojiPickerBottomNavigatorView.swift
-//  
+//  CITEmojiPicker
 //
 //  Created by Hugo de Groot on 13/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import SwiftUI
@@ -48,7 +49,7 @@ struct EmojiPickerBottomNavigatorView: View {
                 }
             }
         }
-        .frame(height: 34)
+        .frame(height: 32)
     }
     
     init(selectedSection: Binding<EmojiTypes>, reader: ScrollViewProxy) {
