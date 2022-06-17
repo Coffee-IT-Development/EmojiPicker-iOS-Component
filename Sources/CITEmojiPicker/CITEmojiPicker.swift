@@ -34,19 +34,22 @@ public struct CITEmojiPicker: View {
                     ScrollView(.horizontal) {
                         HStack {
                             if let recentEmojis = viewModel.recentEmojis {
-                                Text("Recent emojis")
-                                    .foregroundColor(.textColor)
-                                    .padding([.bottom, .leading], 8)
-                                
-                                UIGrid(columns: 5, list: recentEmojis) { emoji in
-                                    Text(emoji)
-                                        .font(.system(size: 28))
-                                        .padding(.horizontal, 7)
-                                        .padding(.vertical, 3)
-                                        .onTapGesture {
-                                            didAddEmoji(emoji)
-                                        }
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Recent emojis")
+                                        .foregroundColor(.textColor)
+                                        .padding([.bottom, .leading], 8)
+                                    
+                                    UIGrid(columns: 5, list: recentEmojis) { emoji in
+                                        Text(emoji)
+                                            .font(.system(size: 28))
+                                            .padding(.horizontal, 7)
+                                            .padding(.vertical, 3)
+                                            .onTapGesture {
+                                                didAddEmoji(emoji)
+                                            }
+                                    }
                                 }
+                                .padding(.leading, gridLeadingPadding)
                             }
                             
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
