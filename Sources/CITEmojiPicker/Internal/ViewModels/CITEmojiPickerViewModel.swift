@@ -53,6 +53,16 @@ class CITEmojiPickerViewModel: ObservableObject {
     func getRecentEmojis() {
         let retrievedArray = userDefaults.object(forKey: "RECENT_EMOJIS_KEY") as? [String]
         recentEmojis = retrievedArray
+        var recentEmojisByGroup = [EmojisByGroup]()
+        guard let recentEmojis = recentEmojis else {
+            return
+        }
+        
+        for emoji in recentEmojis {
+            recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
+        }
+        
+        searchEmojiArray.insert(contentsOf: recentEmojisByGroup, at: 0)
     }
     
     func setRecentEmojis(emoji: String) {

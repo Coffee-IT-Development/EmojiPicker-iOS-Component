@@ -18,13 +18,9 @@ struct EmojiPickerBottomNavigatorView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.emojiCategoriesBackground)
-                .frame(maxWidth: .infinity)
-            
-            HStack(spacing: 8) {
+            ForEach(EmojiTypes.allCases) { emojiType in
                 ZStack {
-                    if EmojiTypes.recents == selectedSection {
+                    if emojiType == selectedSection {
                         Rectangle()
                             .fill(Color.selectedCategoryBackground)
                             .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
@@ -33,7 +29,7 @@ struct EmojiPickerBottomNavigatorView: View {
                     }
                     
                     VStack {
-                        EmojiTypes.recents.emojiImage
+                        emojiType.emojiImage
                             .resizable()
                             .renderingMode(.template)
                             .foregroundColor(Color.textColor)
@@ -42,43 +38,18 @@ struct EmojiPickerBottomNavigatorView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .onTapGesture {
-                    reader.scrollTo("recents", anchor: .leading)
-                    selectedSection = EmojiTypes.recents
-                }
-                
-                ForEach(EmojiTypes.allCases) { emojiType in
-                    if emojiType != .recents {
-                        ZStack {
-                            if emojiType == selectedSection {
-                                Rectangle()
-                                    .fill(Color.selectedCategoryBackground)
-                                    .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
-                                    .cornerRadius(8)
-                                    .padding(2)
-                            }
-                            
-                            VStack {
-                                emojiType.emojiImage
-                                    .resizable()
-                                    .renderingMode(.template)
-                                    .foregroundColor(Color.textColor)
-                                    .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                        .onTapGesture {
-                            reader.scrollTo(emojiType.rawValue, anchor: .leading)
-                            selectedSection = emojiType
-                        }
-                    }
+                    reader.scrollTo(emojiType.rawValue, anchor: .leading)
+                    selectedSection = emojiType
                 }
             }
         }
         .frame(height: 32)
     }
+        
     
     init(selectedSection: Binding<EmojiTypes>, reader: ScrollViewProxy) {
         self._selectedSection = selectedSection
         self.reader = reader
     }
 }
+
