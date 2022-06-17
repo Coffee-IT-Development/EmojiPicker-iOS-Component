@@ -16,10 +16,14 @@ class CITEmojiPickerViewModel: ObservableObject {
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
     
+    private let userDefaults = UserDefaults.standard
+    @Published var recentEmojis: [String]? = []
+    
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         emojisByGroup = filterEmojis()
         fillSearchEmojiList()
+        getRecentEmojis()
     }
     
     private func filterEmojis() -> EmojiGroups {
@@ -44,6 +48,16 @@ class CITEmojiPickerViewModel: ObservableObject {
             }
         }
         searchEmojiArray = emojiArray
+    }
+    
+    func getRecentEmojis() {
+        recentEmojis = userDefaults.object(forKey: "RECENT_EMOJIS_KEY") as? [String]
+    }
+    
+    func setRecentEmojis(emoji: EmojisByGroup) {
+        let emoji = emoji.emoji
+        recentEmojis?.append(emoji)
+        userDefaults.set(recentEmojis, forKey: "RECENT_EMOJIS_KEY")
     }
     
     func updateSearchEmojiList() {

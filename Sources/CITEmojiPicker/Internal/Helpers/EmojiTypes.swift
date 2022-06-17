@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 
 enum EmojiTypes: String, Identifiable, CaseIterable {
-    case recents = "Recents"
     case smileysAndEmotion = "Smileys & People"
     case animalsAndNature = "Animals & Nature"
     case foodAndDrink = "Food & Drink"
@@ -24,8 +23,6 @@ enum EmojiTypes: String, Identifiable, CaseIterable {
     
     var emojiImage: Image {
         switch self {
-        case .recents:
-            return Image(systemName: "clock")
         case .smileysAndEmotion:
             return Image.icSmileysAndPeople
         case .animalsAndNature:
