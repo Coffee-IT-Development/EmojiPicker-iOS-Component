@@ -57,7 +57,11 @@ class CITEmojiPickerViewModel: ObservableObject {
     }
     
     func setRecentEmojis(emoji: String) {
-        recentEmojis?.append(emoji)
+        if recentEmojis == nil {
+            recentEmojis = [emoji]
+        } else {
+            recentEmojis?.append(emoji)
+        }
         userDefaults.set(recentEmojis, forKey: "RECENT_EMOJIS_KEY")
     }
     
