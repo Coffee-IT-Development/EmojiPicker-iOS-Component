@@ -60,9 +60,7 @@ class CITEmojiPickerViewModel: ObservableObject {
         for emoji in recentEmojis {
             recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
         }
-        print(recentEmojisByGroup)
         emojisByGroup.updateValue(recentEmojisByGroup, forKey: EmojiTypes.recents.rawValue)
-        print(emojisByGroup)
     }
     
     func setRecentEmojis(emoji: String) {
