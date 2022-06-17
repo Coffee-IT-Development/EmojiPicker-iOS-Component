@@ -47,27 +47,29 @@ struct EmojiPickerBottomNavigatorView: View {
                 }
                 
                 ForEach(EmojiTypes.allCases) { emojiType in
-                    ZStack {
-                        if emojiType == selectedSection {
-                            Rectangle()
-                                .fill(Color.selectedCategoryBackground)
-                                .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
-                                .cornerRadius(8)
-                                .padding(2)
+                    if emojiType != .recents {
+                        ZStack {
+                            if emojiType == selectedSection {
+                                Rectangle()
+                                    .fill(Color.selectedCategoryBackground)
+                                    .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
+                                    .cornerRadius(8)
+                                    .padding(2)
+                            }
+                            
+                            VStack {
+                                emojiType.emojiImage
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(Color.textColor)
+                                    .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
+                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        
-                        VStack {
-                            emojiType.emojiImage
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(Color.textColor)
-                                .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
+                        .onTapGesture {
+                            reader.scrollTo(emojiType.rawValue, anchor: .leading)
+                            selectedSection = emojiType
                         }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .onTapGesture {
-                        reader.scrollTo(emojiType.rawValue, anchor: .leading)
-                        selectedSection = emojiType
                     }
                 }
             }
