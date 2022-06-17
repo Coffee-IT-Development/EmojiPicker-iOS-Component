@@ -13,7 +13,7 @@ public struct SearchEmojiView: View {
     @Binding private var isSearchingForEmoji: Bool
     
     private let didAddEmoji: (String) -> Void
-    let searchEmojiPlaceHolder: String
+    let searchEmojiPlaceholder: String
     
     public var body: some View {
         HStack {
@@ -62,11 +62,11 @@ public struct SearchEmojiView: View {
         viewModel: CITEmojiPickerViewModel,
         didAddEmoji: @escaping (String) -> Void,
         isSearchingForEmoji: Binding<Bool>,
-        searchEmojiPlaceHolder: String
+        searchEmojiPlaceholder: String
     ) {
         self.viewModel = viewModel
         self.didAddEmoji = didAddEmoji
         self._isSearchingForEmoji = isSearchingForEmoji
-        self.searchEmojiPlaceHolder = searchEmojiPlaceHolder
+        self.searchEmojiPlaceholder = searchEmojiPlaceholder
     }
 }

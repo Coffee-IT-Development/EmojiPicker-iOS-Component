@@ -14,7 +14,7 @@ public struct CITEmojiPicker: View {
     @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State var isSearchingForEmoji = false
     
-    let searchEmojiPlaceHolder: String
+    let searchEmojiPlaceholder: String
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
     
@@ -24,7 +24,7 @@ public struct CITEmojiPicker: View {
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji,
-                searchEmojiPlaceHolder: searchEmojiPlaceHolder
+                searchEmojiPlaceholder: searchEmojiPlaceholder
             )
             
             if !isSearchingForEmoji {
@@ -100,8 +100,8 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void, searchEmojiPlaceHolder: String) {
+    public init(didAddEmoji: @escaping (String) -> Void, searchEmojiPlaceholder: String) {
         self.didAddEmoji = didAddEmoji
-        self.searchEmojiPlaceHolder = searchEmojiPlaceHolder
+        self.searchEmojiPlaceholder = searchEmojiPlaceholder
     }
 }
