@@ -13,7 +13,7 @@ public struct SearchEmojiView: View {
     @Binding private var isSearchingForEmoji: Bool
     
     private let didAddEmoji: (String) -> Void
-    let searchEmojiPlaceholder: String
+    private let searchEmojiPlaceholder: String
     
     public var body: some View {
         HStack {

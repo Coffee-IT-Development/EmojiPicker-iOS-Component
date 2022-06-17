@@ -9,12 +9,12 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
-    @ObservedObject public var viewModel = CITEmojiPickerViewModel()
-    @State var selectedSection: EmojiTypes = .smileysAndEmotion
-    @State var emojiPreferenceKeys: [EmojiPreferenceKey] = []
-    @State var isSearchingForEmoji = false
+    @ObservedObject private var viewModel = CITEmojiPickerViewModel()
+    @State private var selectedSection: EmojiTypes = .smileysAndEmotion
+    @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
+    @State private var isSearchingForEmoji = false
     
-    let searchEmojiPlaceholder: String
+    private let searchEmojiPlaceholder: String
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
     
@@ -100,8 +100,8 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void, searchEmojiPlaceholder: String) {
-        self.didAddEmoji = didAddEmoji
+    public init(searchEmojiPlaceholder: String, didAddEmoji: @escaping (String) -> Void) {
         self.searchEmojiPlaceholder = searchEmojiPlaceholder
+        self.didAddEmoji = didAddEmoji
     }
 }
