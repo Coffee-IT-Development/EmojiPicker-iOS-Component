@@ -9,14 +9,14 @@
 import SwiftUI
 
 class CITEmojiPickerViewModel: ObservableObject {
-    @Published var emojisByGroup: EmojiGroups = ["Recents":[]]
+    @Published var emojisByGroup: EmojiGroups = [EmojiTypes.recents.rawValue:[]]
     @Published var searchEmojis = [String]()
     @Published var recentEmojis: [String]? = []
     @Published var searchEmojiText = ""
     
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
-    
+    private let recentEmojisKey = "RECENT_EMOJIS_KEY"
     private let userDefaults = UserDefaults.standard
     
     init() {
@@ -51,7 +51,7 @@ class CITEmojiPickerViewModel: ObservableObject {
     }
     
     func getRecentEmojis() {
-        recentEmojis = userDefaults.object(forKey: "RECENT_EMOJIS_KEY") as? [String]
+        recentEmojis = userDefaults.object(forKey: recentEmojisKey) as? [String]
         var recentEmojisByGroup = [EmojisByGroup]()
         guard let recentEmojis = recentEmojis else {
             return
@@ -61,13 +61,14 @@ class CITEmojiPickerViewModel: ObservableObject {
             recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
         }
         print(recentEmojisByGroup)
-        emojisByGroup.updateValue(recentEmojisByGroup, forKey: "Recents")
+        emojisByGroup.updateValue(recentEmojisByGroup, forKey: EmojiTypes.recents.rawValue)
+        print(emojisByGroup)
     }
     
     func setRecentEmojis(emoji: String) {
         guard let _ = recentEmojis else {
             recentEmojis = [emoji]
-            userDefaults.set(recentEmojis, forKey: "RECENT_EMOJIS_KEY")
+            userDefaults.set(recentEmojis, forKey: recentEmojisKey)
             return
         }
         
@@ -82,7 +83,7 @@ class CITEmojiPickerViewModel: ObservableObject {
             recentEmojis?.removeLast()
         }
         
-        userDefaults.set(recentEmojis, forKey: "RECENT_EMOJIS_KEY")
+        userDefaults.set(recentEmojis, forKey: recentEmojisKey)
     }
     
     func updateSearchEmojiList() {
