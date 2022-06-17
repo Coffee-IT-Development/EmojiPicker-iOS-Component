@@ -38,4 +38,3 @@ Actively maintained by Hugo
 
 - added EmojiPicker
 - added search field
-
