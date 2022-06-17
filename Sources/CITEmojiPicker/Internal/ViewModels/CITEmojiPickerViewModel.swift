@@ -11,13 +11,13 @@ import SwiftUI
 class CITEmojiPickerViewModel: ObservableObject {
     @Published var emojisByGroup: EmojiGroups = ["Recents":[]]
     @Published var searchEmojis = [String]()
+    @Published var recentEmojis: [String]? = []
     @Published var searchEmojiText = ""
     
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
     
     private let userDefaults = UserDefaults.standard
-    @Published var recentEmojis: [String]? = []
     
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
@@ -51,8 +51,7 @@ class CITEmojiPickerViewModel: ObservableObject {
     }
     
     func getRecentEmojis() {
-        let retrievedArray = userDefaults.object(forKey: "RECENT_EMOJIS_KEY") as? [String]
-        recentEmojis = retrievedArray
+        recentEmojis = userDefaults.object(forKey: "RECENT_EMOJIS_KEY") as? [String]
         var recentEmojisByGroup = [EmojisByGroup]()
         guard let recentEmojis = recentEmojis else {
             return
@@ -62,7 +61,7 @@ class CITEmojiPickerViewModel: ObservableObject {
             recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
         }
         
-        emojisByGroup["Recents"] = recentEmojisByGroup
+        emojisByGroup.updateValue(recentEmojisByGroup, forKey: "Recents")
     }
     
     func setRecentEmojis(emoji: String) {
