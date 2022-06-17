@@ -9,7 +9,7 @@
 import SwiftUI
 
 class CITEmojiPickerViewModel: ObservableObject {
-    @Published var emojisByGroup: EmojiGroups = [:]
+    @Published var emojisByGroup: EmojiGroups = ["Recents":[]]
     @Published var searchEmojis = [String]()
     @Published var searchEmojiText = ""
     
@@ -62,7 +62,7 @@ class CITEmojiPickerViewModel: ObservableObject {
             recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
         }
         
-        searchEmojiArray.insert(contentsOf: recentEmojisByGroup, at: 0)
+        emojisByGroup["Recents"] = [recentEmojisByGroup]
     }
     
     func setRecentEmojis(emoji: String) {
