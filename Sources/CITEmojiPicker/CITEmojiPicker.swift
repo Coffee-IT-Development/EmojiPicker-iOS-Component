@@ -34,41 +34,43 @@ public struct CITEmojiPicker: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(emojiType.rawValue)
-                                        .foregroundColor(.textColor)
-                                        .padding([.bottom, .leading], 8)
-                                    
-                                    UIGrid(columns: 5, list: viewModel.emojisByGroup[emojiType.rawValue] ?? []) { emoji in
-                                        Text(emoji.emoji)
-                                            .font(.system(size: 28))
-                                            .padding(.horizontal, 7)
-                                            .padding(.vertical, 3)
-                                            .onTapGesture {
-                                                didAddEmoji(emoji.emoji)
-                                                viewModel.setRecentEmojis(emoji: emoji.emoji)
-                                                viewModel.getRecentEmojis()
-                                            }
-                                    }
-                                }
-                                .id(emojiType)
-                                .padding(.leading, gridLeadingPadding)
-                                .background(
-                                    GeometryReader { proxy in
-                                        if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                            let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                            let _ = DispatchQueue.main.async {
-                                                emojiPreferenceKeys.append(
-                                                    EmojiPreferenceKey(
-                                                        emojiType: emojiType,
-                                                        yOffset: yOffSet
-                                                    )
-                                                )
-                                            }
+                                if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue] {
+                                    VStack(alignment: .leading, spacing: 0) {
+                                        Text(emojiType.rawValue)
+                                            .foregroundColor(.textColor)
+                                            .padding([.bottom, .leading], 8)
+                                        
+                                        UIGrid(columns: 5, list: emojiGroup) { emoji in
+                                            Text(emoji.emoji)
+                                                .font(.system(size: 28))
+                                                .padding(.horizontal, 7)
+                                                .padding(.vertical, 3)
+                                                .onTapGesture {
+                                                    didAddEmoji(emoji.emoji)
+                                                    viewModel.setRecentEmojis(emoji: emoji.emoji)
+                                                    viewModel.getRecentEmojis()
+                                                }
                                         }
-                                        Color.clear
                                     }
-                                )
+                                    .id(emojiType)
+                                    .padding(.leading, gridLeadingPadding)
+                                    .background(
+                                        GeometryReader { proxy in
+                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
+                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                let _ = DispatchQueue.main.async {
+                                                    emojiPreferenceKeys.append(
+                                                        EmojiPreferenceKey(
+                                                            emojiType: emojiType,
+                                                            yOffset: yOffSet
+                                                        )
+                                                    )
+                                                }
+                                            }
+                                            Color.clear
+                                        }
+                                    )
+                                }
                             }
                         }
                         .background(GeometryReader {
