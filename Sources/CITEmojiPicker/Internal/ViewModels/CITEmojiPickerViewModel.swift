@@ -62,7 +62,7 @@ class CITEmojiPickerViewModel: ObservableObject {
             recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
         }
         
-        emojisByGroup["Recents"] = [recentEmojisByGroup]
+        emojisByGroup["Recents"] = recentEmojisByGroup
     }
     
     func setRecentEmojis(emoji: String) {
