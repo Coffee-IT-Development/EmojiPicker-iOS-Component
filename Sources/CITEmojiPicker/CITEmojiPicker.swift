@@ -46,6 +46,7 @@ public struct CITEmojiPicker: View {
                                             .padding(.vertical, 3)
                                             .onTapGesture {
                                                 didAddEmoji(emoji)
+                                                print(emojiPreferenceKeys)
                                             }
                                     }
                                 }
