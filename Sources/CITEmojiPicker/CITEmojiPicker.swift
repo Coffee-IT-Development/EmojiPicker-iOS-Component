@@ -49,6 +49,7 @@ public struct CITEmojiPicker: View {
                                             }
                                     }
                                 }
+                                .id("recents")
                                 .padding(.leading, gridLeadingPadding)
                             }
                             

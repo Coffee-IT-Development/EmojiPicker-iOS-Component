@@ -23,6 +23,26 @@ struct EmojiPickerBottomNavigatorView: View {
                 .frame(maxWidth: .infinity)
             
             HStack(spacing: 8) {
+                ZStack {
+                    Rectangle()
+                        .fill(Color.selectedCategoryBackground)
+                        .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
+                        .cornerRadius(8)
+                        .padding(2)
+                    
+                    VStack {
+                        Image(systemName: "clock")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(Color.textColor)
+                            .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .onTapGesture {
+                    reader.scrollTo("recents", anchor: .leading)
+                }
+                
                 ForEach(EmojiTypes.allCases) { emojiType in
                     ZStack {
                         if emojiType == selectedSection {
