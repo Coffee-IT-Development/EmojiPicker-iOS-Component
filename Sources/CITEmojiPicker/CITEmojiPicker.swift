@@ -25,11 +25,11 @@ public struct CITEmojiPicker: View {
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji,
-                keyboardIsOpen: $keyboardHelper.keyboardIsOpen,
+                keyboardIsOpen: $keyboardHelper.isOpen,
                 searchEmojiPlaceholder: searchEmojiPlaceholder
             )
             
-            if !keyboardHelper.keyboardIsOpen {
+            if !keyboardHelper.isOpen {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
@@ -96,7 +96,7 @@ public struct CITEmojiPicker: View {
                 }
             } else {
                 Spacer()
-                    .frame(height: UIDevice.isIPad ? keyboardHelper.keyboardHeight + 100 : keyboardHelper.keyboardHeight - 40)
+                    .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
             }
         }
         .background(Color.sheetBackground)

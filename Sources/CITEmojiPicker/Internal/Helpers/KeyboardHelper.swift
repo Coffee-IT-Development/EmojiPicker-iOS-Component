@@ -1,17 +1,18 @@
 //
 //  KeyboardHelper.swift
-//  
+//  CITEmojiPicker
 //
 //  Created by Hugo de Groot on 16/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
-import UIKit
-import SwiftUI
 import Foundation
+import SwiftUI
+import UIKit
 
 class KeyboardHelper: ObservableObject {
-    @Published var keyboardHeight: CGFloat = 0
-    @Published var keyboardIsOpen = false
+    @Published var height: CGFloat = 0
+    @Published var isOpen = false
     
     init() {
         listenForKeyboardNotifications()
@@ -24,15 +25,15 @@ class KeyboardHelper: ObservableObject {
             guard let userInfo = notification.userInfo,
                   let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-            self.keyboardHeight = keyboardRect.height
-            self.keyboardIsOpen = true
+            self.height = keyboardRect.height
+            self.isOpen = true
         }
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification,
                                                object: nil,
                                                queue: .main) { (notification) in
-            self.keyboardHeight = 0
-            self.keyboardIsOpen = false
+            self.height = 0
+            self.isOpen = false
         }
     }
 }
