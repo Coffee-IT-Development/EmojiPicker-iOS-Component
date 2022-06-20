@@ -34,7 +34,7 @@ public struct CITEmojiPicker: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
-                                if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue] {
+                                if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
                                         Text(emojiType.rawValue)
                                             .foregroundColor(.textColor)
