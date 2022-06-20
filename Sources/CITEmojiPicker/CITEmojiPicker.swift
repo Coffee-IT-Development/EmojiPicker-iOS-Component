@@ -9,8 +9,8 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
-    @ObservedObject private var viewModel = CITEmojiPickerViewModel()
-    @ObservedObject private var keyboardHelper = KeyboardHelper()
+    @StateObject private var viewModel = CITEmojiPickerViewModel()
+    @StateObject private var keyboardHelper = KeyboardHelper()
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false

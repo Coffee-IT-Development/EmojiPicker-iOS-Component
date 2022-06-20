@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 enum EmojiTypes: String, Identifiable, CaseIterable {
-    case recents = "recents"
+    case recents
     case smileysAndEmotion = "Smileys & People"
     case animalsAndNature = "Animals & Nature"
     case foodAndDrink = "Food & Drink"

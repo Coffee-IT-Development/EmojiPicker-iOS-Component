@@ -16,7 +16,7 @@ class CITEmojiPickerViewModel: ObservableObject {
     
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
-    private let recentEmojisKey = "RECENT_EMOJIS_KEY"
+    private let recentEmojisKey = "nl.coffeeit.aroma.citemojipicker.recent_emojis"
     private let userDefaults = UserDefaults.standard
     
     init() {
