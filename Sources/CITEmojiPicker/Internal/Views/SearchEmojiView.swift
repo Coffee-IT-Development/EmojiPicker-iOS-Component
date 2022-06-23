@@ -14,7 +14,6 @@ struct SearchEmojiView: View {
     @Binding private var keyboardIsOpen: Bool
 
     private let didAddEmoji: (String) -> Void
-    private let searchEmojiPlaceholder: String
     
     var body: some View {
         HStack {
@@ -23,7 +22,7 @@ struct SearchEmojiView: View {
                 .foregroundColor(Color.textColor)
                 .padding(.leading)
             
-            TextField("Search Emoji", text: $viewModel.searchEmojiText)
+            TextField("\(NSLocalizedString("citemojipicker_search", bundle: .module, comment: "Search"))  \(NSLocalizedString("citemojipicker_emoji", bundle: .module, comment: "Emoji"))", text: $viewModel.searchEmojiText)
                 .foregroundColor(Color.textColor)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
@@ -65,13 +64,11 @@ struct SearchEmojiView: View {
         viewModel: CITEmojiPickerViewModel,
         didAddEmoji: @escaping (String) -> Void,
         isSearchingForEmoji: Binding<Bool>,
-        keyboardIsOpen: Binding<Bool>,
-        searchEmojiPlaceholder: String
+        keyboardIsOpen: Binding<Bool>
     ) {
         self.viewModel = viewModel
         self.didAddEmoji = didAddEmoji
         self._isSearchingForEmoji = isSearchingForEmoji
         self._keyboardIsOpen = keyboardIsOpen
-        self.searchEmojiPlaceholder = searchEmojiPlaceholder
     }
 }

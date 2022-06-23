@@ -3,9 +3,11 @@
 "citemojipicker_recents" = "Récents";
 "citemojipicker_smileys_and_people" = "Émoticônes et personnes";
 "citemojipicker_animals_and_nature" = "Animaux et nature";
-"citemojipicker_food_and_drink" = "Aliments et boissons";
+"citemojipicker_food_and_drink" = "Aliment et boisson";
 "citemojipicker_activity" = "Activités";
 "citemojipicker_travel_and_places" = "Voyages et lieux";
 "citemojipicker_objects" = "Objets";
 "citemojipicker_symbols" = "Symboles";
 "citemojipicker_flags" = "Drapeaux";
+"citemojipicker_emoji" = "Émojis";
+"citemojipicker_search" = "Rechercher";

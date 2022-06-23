@@ -1,7 +1,7 @@
 // This file was generated from Apple localisation glossaries.
 
 "citemojipicker_recents" = "Terbaru";
-"citemojipicker_smileys_and_people" = "Muka Senyum & Orang";
+"citemojipicker_smileys_and_people" = "Senyuman & Orang";
 "citemojipicker_animals_and_nature" = "Haiwan & Alam";
 "citemojipicker_food_and_drink" = "Makanan & Minuman";
 "citemojipicker_activity" = "Aktiviti";
@@ -9,3 +9,5 @@
 "citemojipicker_objects" = "Objek";
 "citemojipicker_symbols" = "Simbol";
 "citemojipicker_flags" = "Bendera";
+"citemojipicker_emoji" = "Emoji";
+"citemojipicker_search" = "Cari";

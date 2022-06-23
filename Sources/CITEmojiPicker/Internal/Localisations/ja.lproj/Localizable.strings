@@ -1,6 +1,6 @@
 // This file was generated from Apple localisation glossaries.
 
-"citemojipicker_recents" = "履歴";
+"citemojipicker_recents" = "最近使った項目";
 "citemojipicker_smileys_and_people" = "スマイリーと人々";
 "citemojipicker_animals_and_nature" = "動物と自然";
 "citemojipicker_food_and_drink" = "食べ物と飲み物";
@@ -9,3 +9,5 @@
 "citemojipicker_objects" = "物";
 "citemojipicker_symbols" = "記号";
 "citemojipicker_flags" = "旗";
+"citemojipicker_emoji" = "絵文字";
+"citemojipicker_search" = "検索";

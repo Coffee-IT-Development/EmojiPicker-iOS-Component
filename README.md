@@ -34,10 +34,11 @@ If you want the app to use localisations there's a few steps you have to follow.
 The supported languages are:
  - Arabic
  - Catalan
- - CZech
+ - Czech
  - Danish
  - German
  - Greek
+ - English
  - Australian English
  - British English
  - Spanish
@@ -57,7 +58,7 @@ The supported languages are:
  - Norwegian
  - Dutch
  - Polish
- - Brazilian
+ - Brazilian Portuguese
  - Portuguese
  - Romanian
  - Russian

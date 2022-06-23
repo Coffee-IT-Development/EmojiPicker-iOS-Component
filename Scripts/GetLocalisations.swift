@@ -64,6 +64,8 @@ let neededLocalisations = [
     NeededLocalisation(targetKey: "citemojipicker_objects", appleKey: "Objects Category", glossaryFilename: "EmojiFoundation.lg"),
     NeededLocalisation(targetKey: "citemojipicker_symbols", appleKey: "Symbols Category", glossaryFilename: "EmojiFoundation.lg"),
     NeededLocalisation(targetKey: "citemojipicker_flags", appleKey: "Flags Category", glossaryFilename: "EmojiFoundation.lg"),
+    NeededLocalisation(targetKey: "citemojipicker_emoji", appleKey: "Emoji", glossaryFilename: "Messages.lg"),
+    NeededLocalisation(targetKey: "citemojipicker_search", appleKey: "Search", glossaryFilename: "EmojiPicker.lg"),
 ]
 
 struct Localisation {
