@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "CITEmojiPicker",
-    defaultLocalization: "en",
+    defaultLocalization: "de",
     platforms: [
             .iOS(.v14)
         ],
