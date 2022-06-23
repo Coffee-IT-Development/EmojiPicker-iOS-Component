@@ -36,7 +36,7 @@ public struct CITEmojiPicker: View {
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
-                                        Text(emojiType.rawValue)
+                                        Text(emojiType.lokalisedString)
                                             .foregroundColor(.textColor)
                                             .padding([.bottom, .leading], 8)
                                         

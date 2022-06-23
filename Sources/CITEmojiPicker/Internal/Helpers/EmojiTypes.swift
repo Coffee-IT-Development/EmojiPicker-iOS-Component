@@ -44,4 +44,27 @@ enum EmojiTypes: String, Identifiable, CaseIterable {
             return Image.icFlags
         }
     }
+    
+    var lokalisedString: String {
+        switch self {
+        case .recents:
+            return NSLocalizedString("citemojipicker_recents", bundle: .module, comment: "Recents")
+        case .smileysAndEmotion:
+            return NSLocalizedString("citemojipicker_smileys_and_people", bundle: .module, comment: "Smileys & People")
+        case .animalsAndNature:
+            return NSLocalizedString("citemojipicker_animals_and_nature", bundle: .module, comment: "Animals & Nature")
+        case .foodAndDrink:
+            return NSLocalizedString("citemojipicker_food_and_drink", bundle: .module, comment: "Food & Drink")
+        case .activities:
+            return NSLocalizedString("citemojipicker_activity", bundle: .module, comment: "Activity")
+        case .travelAndPlaces:
+            return NSLocalizedString("citemojipicker_travel_and_places", bundle: .module, comment: "Travel & Places")
+        case .objects:
+            return NSLocalizedString("citemojipicker_objects", bundle: .module, comment: "Objects")
+        case .symbols:
+            return NSLocalizedString("citemojipicker_symbols", bundle: .module, comment: "Symbols")
+        case .flags:
+            return NSLocalizedString("citemojipicker_flags", bundle: .module, comment: "Flags")
+        }
+    }
 }
