@@ -10,6 +10,7 @@ import SwiftUI
 
 struct EmojiPickerBottomNavigatorView: View {
     @Binding private var selectedSection: EmojiTypes
+    @Binding private var emptyEmojiTypes: [EmojiTypes]
     private let reader: ScrollViewProxy
     private let emojiImageAssetSize: CGFloat = 16
     private var emojiBackgroundSize: CGFloat {
@@ -24,27 +25,29 @@ struct EmojiPickerBottomNavigatorView: View {
             
             HStack(spacing: 8) {
                 ForEach(EmojiTypes.allCases) { emojiType in
-                    ZStack {
-                        if emojiType == selectedSection {
-                            Rectangle()
-                                .fill(Color.selectedCategoryBackground)
-                                .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
-                                .cornerRadius(8)
-                                .padding(2)
+                    if !emptyEmojiTypes.contains(emojiType) {
+                        ZStack {
+                            if emojiType == selectedSection {
+                                Rectangle()
+                                    .fill(Color.selectedCategoryBackground)
+                                    .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
+                                    .cornerRadius(8)
+                                    .padding(2)
+                            }
+                            
+                            VStack {
+                                emojiType.emojiImage
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(Color.textColor)
+                                    .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
+                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        
-                        VStack {
-                            emojiType.emojiImage
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(Color.textColor)
-                                .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
+                        .onTapGesture {
+                            reader.scrollTo(emojiType.rawValue, anchor: .leading)
+                            selectedSection = emojiType
                         }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .onTapGesture {
-                        reader.scrollTo(emojiType.rawValue, anchor: .leading)
-                        selectedSection = emojiType
                     }
                 }
             }
@@ -52,8 +55,9 @@ struct EmojiPickerBottomNavigatorView: View {
         .frame(height: 32)
     }
     
-    init(selectedSection: Binding<EmojiTypes>, reader: ScrollViewProxy) {
+    init(selectedSection: Binding<EmojiTypes>, emptyEmojiTypes: Binding<[EmojiTypes]>, reader: ScrollViewProxy) {
         self._selectedSection = selectedSection
+        self._emptyEmojiTypes = emptyEmojiTypes
         self.reader = reader
     }
 }
