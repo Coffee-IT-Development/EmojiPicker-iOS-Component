@@ -9,17 +9,23 @@
 import SwiftUI
 
 class CITEmojiPickerViewModel: ObservableObject {
-    @Published var emojisByGroup: EmojiGroups = [:]
+    @Published var emojisByGroup: EmojiGroups = [EmojiTypes.recents.rawValue:[]]
     @Published var searchEmojis = [String]()
+    @Published var recentEmojis: [String]? = []
     @Published var searchEmojiText = ""
+    @Published var emptyEmojiTypes = [EmojiTypes]()
     
     private let emojiGroups: EmojiGroups
     private var searchEmojiArray = [EmojisByGroup]()
+    private let recentEmojisKey = "nl.coffeeit.aroma.citemojipicker.recent_emojis"
+    private let userDefaults = UserDefaults.standard
     
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         emojisByGroup = filterEmojis()
         fillSearchEmojiList()
+        getRecentEmojis()
+        fillEmptyEmojiTypes()
     }
     
     private func filterEmojis() -> EmojiGroups {
@@ -46,6 +52,40 @@ class CITEmojiPickerViewModel: ObservableObject {
         searchEmojiArray = emojiArray
     }
     
+    func getRecentEmojis() {
+        recentEmojis = userDefaults.object(forKey: recentEmojisKey) as? [String]
+        var recentEmojisByGroup = [EmojisByGroup]()
+        guard let recentEmojis = recentEmojis else {
+            return
+        }
+        
+        for emoji in recentEmojis {
+            recentEmojisByGroup.append(EmojisByGroup(emoji: emoji))
+        }
+        emojisByGroup.updateValue(recentEmojisByGroup, forKey: EmojiTypes.recents.rawValue)
+    }
+    
+    func setRecentEmojis(emoji: String) {
+        guard let _ = recentEmojis else {
+            recentEmojis = [emoji]
+            userDefaults.set(recentEmojis, forKey: recentEmojisKey)
+            return
+        }
+        
+        if let index = recentEmojis?.firstIndex(of: emoji) {
+            recentEmojis?.remove(at: index)
+        }
+        
+        recentEmojis?.insert(emoji, at: 0)
+        
+        
+        if recentEmojis?.count ?? 0 > 30 {
+            recentEmojis?.removeLast()
+        }
+        
+        userDefaults.set(recentEmojis, forKey: recentEmojisKey)
+    }
+    
     func updateSearchEmojiList() {
         var searchEmojisList = [String]()
         for emoji in searchEmojiArray {
@@ -54,6 +94,14 @@ class CITEmojiPickerViewModel: ObservableObject {
             }
         }
         searchEmojis = searchEmojisList
+    }
+    
+    func fillEmptyEmojiTypes() {
+        for emojiType in EmojiTypes.allCases {
+            if let emojiGroup = emojisByGroup[emojiType.rawValue], emojiGroup.isEmpty {
+                emptyEmojiTypes.append(emojiType)
+            }
+        }
     }
 }
 

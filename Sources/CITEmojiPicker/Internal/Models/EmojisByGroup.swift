@@ -27,6 +27,16 @@ struct EmojisByGroup: Identifiable, Codable, Hashable {
     let unicodeVersion: String
     let emojiVersion: String
     let skinToneSupportUnicodeVersion: String?
+    
+    init(emoji: String) {
+        self.emoji = emoji
+        skinToneSupport = false
+        name = ""
+        slug = ""
+        unicodeVersion = ""
+        emojiVersion = ""
+        skinToneSupportUnicodeVersion = nil
+    }
 }
 
 typealias EmojiGroups = [String: [EmojisByGroup]]
