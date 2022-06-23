@@ -14,7 +14,6 @@ public struct CITEmojiPicker: View {
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
-    @State private var emptyEmojiTypes = [EmojiTypes]()
     
     private let searchEmojiPlaceholder: String
     private let didAddEmoji: (String) -> Void
@@ -51,10 +50,6 @@ public struct CITEmojiPicker: View {
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
                                                 }
                                         }
-                                        
-                                        if emojiGroup.isEmpty {
-                                            Spacer()
-                                        }
                                     }
                                     .id(emojiType)
                                     .padding(.leading, gridLeadingPadding)
@@ -74,11 +69,6 @@ public struct CITEmojiPicker: View {
                                             Color.clear
                                         }
                                     )
-                                } else {
-                                    EmptyView()
-                                        .onAppear {
-                                            emptyEmojiTypes.append(emojiType)
-                                        }
                                 }
                             }
                         }
@@ -103,7 +93,7 @@ public struct CITEmojiPicker: View {
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
-                        emptyEmojiTypes: $emptyEmojiTypes,
+                        emptyEmojiTypes: $viewModel.emptyEmojiTypes,
                         reader: reader
                     )
                     .padding([.bottom, .horizontal], 16)
