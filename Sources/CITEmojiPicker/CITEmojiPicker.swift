@@ -103,7 +103,7 @@ public struct CITEmojiPicker: View {
                     .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
             }
         }
-        .background(Color.sheetBackground)
+        .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
