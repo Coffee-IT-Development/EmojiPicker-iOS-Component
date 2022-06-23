@@ -27,6 +27,50 @@ struct ContentView: View {
     
 ```
 
+## How to use Localisations
+
+If you want the app to use localisations there's a few steps you have to follow. First add the languages you want to support to the project info under Localizations. Second add a new property to the target info.plist called Localizations. Add the languages you want to support to this array. Only then will the languages be visible. Otherwise it will default to Egnlish. If you want the simulator to show differnt languages make sure to edit the scheme options to set the App Language to the desired language.
+
+The supported languages are:
+ - Arabic
+ - Catalan
+ - CZech
+ - Danish
+ - German
+ - Greek
+ - Australian English
+ - British English
+ - Spanish
+ - Latin
+ - Finnish
+ - Universal French
+ - Canadian
+ - Hebrew
+ - Hindi
+ - Croatian
+ - Hungarian
+ - Indonesian
+ - Italian
+ - Japanese
+ - Korean
+ - Malay
+ - Norwegian
+ - Dutch
+ - Polish
+ - Brazilian
+ - Portuguese
+ - Romanian
+ - Russian
+ - Slovak
+ - Swedish
+ - Thai
+ - Turkish
+ - Ukrainian
+ - Vietnamese
+ - Simplified Chinese
+ - Traditional Chinese
+ - Hong Kong
+
 ## Maintainer
 
 Actively maintained by Hugo
@@ -37,4 +81,6 @@ Actively maintained by Hugo
 #### 1.0.0
 
 - added EmojiPicker
-- added search field
+- added Search field
+- added Recents
+- added Localisations
