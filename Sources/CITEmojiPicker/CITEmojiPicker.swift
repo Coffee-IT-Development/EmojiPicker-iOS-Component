@@ -97,6 +97,9 @@ public struct CITEmojiPicker: View {
                         reader: reader
                     )
                     .padding([.bottom, .horizontal], 16)
+                    .onAppear {
+                        print(Bundle.module.localizations)
+                    }
                 }
             } else {
                 Spacer()
