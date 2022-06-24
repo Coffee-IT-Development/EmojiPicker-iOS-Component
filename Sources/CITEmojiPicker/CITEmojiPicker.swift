@@ -74,7 +74,6 @@ public struct CITEmojiPicker: View {
                                 }
                             }
                         }
-                        .padding(.horizontal, isPortrait ? 0 : -16)
                         .background(GeometryReader {
                             Color.clear.preference(
                                 key: YOffsetScrollValuePreferenceKey.self,
@@ -92,6 +91,7 @@ public struct CITEmojiPicker: View {
                             }
                         }
                     }
+                    .padding(.horizontal, isPortrait ? 0 : -16)
                     .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
