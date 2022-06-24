@@ -16,4 +16,9 @@ extension UIDevice {
     static var isIPhone: Bool {
         UIDevice.current.userInterfaceIdiom == .phone
     }
+    
+    static var hasNotch: Bool {
+        let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return bottom > 0
+    }
 }

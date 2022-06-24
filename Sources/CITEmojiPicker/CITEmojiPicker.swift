@@ -25,6 +25,15 @@ public struct CITEmojiPicker: View {
     private var height: CGFloat {
         isPortrait ? 392 : 259
     }
+    private var scrollViewPadding: CGFloat {
+        if isPortrait {
+            return 0
+        } else if UIDevice.hasNotch {
+            return -46
+        } else {
+            return -52
+        }
+    }
     
     public var body: some View {
         VStack {
@@ -95,7 +104,7 @@ public struct CITEmojiPicker: View {
                             }
                         }
                     }
-                    .padding(.leading, isPortrait ? 0 : -52)
+                    .padding(.leading, scrollViewPadding)
                     .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
@@ -110,7 +119,7 @@ public struct CITEmojiPicker: View {
                     .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
             }
         }
-        .background(Color.sheetBackground.ignoresSafeArea(.all, edges: .bottom))
+        .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
