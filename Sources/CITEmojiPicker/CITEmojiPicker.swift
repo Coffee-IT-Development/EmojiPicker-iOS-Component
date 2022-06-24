@@ -85,7 +85,7 @@ public struct CITEmojiPicker: View {
                             DispatchQueue.main.async {
                                 guard !emojiPreferenceKeys.isEmpty else { return }
                                 // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
-                                let extraOffSet: CGFloat = 0
+                                let extraOffSet: CGFloat = 16
                                 for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
                                     selectedSection = emojiPreferenceKey.emojiType
                                 }
