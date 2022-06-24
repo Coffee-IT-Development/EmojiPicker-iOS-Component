@@ -101,7 +101,7 @@ public struct CITEmojiPicker: View {
                             if UIDevice.isIPhone {
                                 emojiPreferenceKeys = []
                             }
-                            reader.scrollTo(viewModel.emojisByGroup.first?.key ?? EmojiTypes.smileysAndEmotion)
+                            reader.scrollTo(viewModel.emojisByGroup.first?.key ?? EmojiTypes.smileysAndEmotion.rawValue)
                         }
                     }
                     .coordinateSpace(name: "emoji")
