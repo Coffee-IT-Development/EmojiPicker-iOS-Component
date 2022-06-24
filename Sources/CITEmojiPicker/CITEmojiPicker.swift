@@ -15,7 +15,6 @@ public struct CITEmojiPicker: View {
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
-    @State private var horizontal = false
     @State private var columnAmount = 5
     @State private var height: CGFloat = 392
     
@@ -42,67 +41,35 @@ public struct CITEmojiPicker: View {
                                             .foregroundColor(.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
-                                        if horizontal {
-                                            UIGrid(columns: 3, list: emojiGroup) { emoji in
-                                                Text(emoji.emoji)
-                                                    .font(.system(size: 28))
-                                                    .padding(.horizontal, 7)
-                                                    .padding(.vertical, 3)
-                                                    .onTapGesture {
-                                                        didAddEmoji(emoji.emoji)
-                                                        viewModel.setRecentEmojis(emoji: emoji.emoji)
-                                                    }
-                                            }
-                                            .background(
-                                                GeometryReader { proxy in
-                                                    if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                        let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                        let _ = print(yOffSet)
-                                                        let _ = DispatchQueue.main.async {
-                                                            emojiPreferenceKeys.append(
-                                                                EmojiPreferenceKey(
-                                                                    emojiType: emojiType,
-                                                                    yOffset: yOffSet
-                                                                )
-                                                            )
-                                                        }
-                                                    }
-                                                    Color.clear
+                                        UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
+                                            Text(emoji.emoji)
+                                                .font(.system(size: 28))
+                                                .padding(.horizontal, 7)
+                                                .padding(.vertical, 3)
+                                                .onTapGesture {
+                                                    didAddEmoji(emoji.emoji)
+                                                    viewModel.setRecentEmojis(emoji: emoji.emoji)
                                                 }
-                                            )
-                                        } else {
-                                            UIGrid(columns: 5, list: emojiGroup) { emoji in
-                                                Text(emoji.emoji)
-                                                    .font(.system(size: 28))
-                                                    .padding(.horizontal, 7)
-                                                    .padding(.vertical, 3)
-                                                    .onTapGesture {
-                                                        didAddEmoji(emoji.emoji)
-                                                        viewModel.setRecentEmojis(emoji: emoji.emoji)
-                                                    }
-                                            }
-                                            .background(
-                                                GeometryReader { proxy in
-                                                    if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                        let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                        let _ = print(yOffSet)
-                                                        let _ = DispatchQueue.main.async {
-                                                            emojiPreferenceKeys.append(
-                                                                EmojiPreferenceKey(
-                                                                    emojiType: emojiType,
-                                                                    yOffset: yOffSet
-                                                                )
-                                                            )
-                                                        }
-                                                    }
-                                                    Color.clear
-                                                }
-                                            )
                                         }
                                     }
                                     .id(emojiType)
                                     .padding(.leading, gridLeadingPadding)
-                                    
+                                    .background(
+                                        GeometryReader { proxy in
+                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
+                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                let _ = DispatchQueue.main.async {
+                                                    emojiPreferenceKeys.append(
+                                                        EmojiPreferenceKey(
+                                                            emojiType: emojiType,
+                                                            yOffset: yOffSet
+                                                        )
+                                                    )
+                                                }
+                                            }
+                                            Color.clear
+                                        }
+                                    )
                                 }
                             }
                         }
@@ -116,7 +83,7 @@ public struct CITEmojiPicker: View {
                             DispatchQueue.main.async {
                                 guard !emojiPreferenceKeys.isEmpty else { return }
                                 // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
-                                let extraOffSet: CGFloat = 20
+                                let extraOffSet: CGFloat = 16
                                 for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
                                     selectedSection = emojiPreferenceKey.emojiType
                                 }
@@ -144,11 +111,9 @@ public struct CITEmojiPicker: View {
             if newValue == .regular {
                 columnAmount = 3
                 height = 259
-                horizontal = true
             } else {
                 columnAmount = 5
                 height = 392
-                horizontal = false
             }
         }
     }
