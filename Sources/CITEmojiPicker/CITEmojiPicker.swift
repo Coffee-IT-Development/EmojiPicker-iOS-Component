@@ -62,7 +62,8 @@ public struct CITEmojiPicker: View {
                                     .background(
                                         GeometryReader { proxy in
                                             if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                let yOffSet = proxy.frame(in: .named("emoji")).origin.y
+                                                let _ = print(yOffSet)
                                                 let _ = DispatchQueue.main.async {
                                                     emojiPreferenceKeys.append(
                                                         EmojiPreferenceKey(
