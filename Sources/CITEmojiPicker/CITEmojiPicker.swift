@@ -91,7 +91,7 @@ public struct CITEmojiPicker: View {
                             }
                         }
                     }
-                    .padding(.leading, isPortrait ? 0 : -60)
+                    .padding(.leading, isPortrait ? 0 : -52)
                     .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
