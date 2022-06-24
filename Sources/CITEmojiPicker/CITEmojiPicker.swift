@@ -110,7 +110,7 @@ public struct CITEmojiPicker: View {
                     .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
             }
         }
-        .background(Color.sheetBackground.ignoresSafeArea())
+        .background(Color.sheetBackground.ignoresSafeArea(.all, edges: .bottom))
         .frame(maxWidth: .infinity)
         .frame(height: height)
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
