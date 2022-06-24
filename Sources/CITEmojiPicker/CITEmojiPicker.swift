@@ -108,23 +108,33 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
-        .onChange(of: sizeClass) { newValue in
-            if newValue == .regular {
-                emojiPreferenceKeys = []
-                columnAmount = 3
-                height = 259
-                gridLeadingPadding = 2
-            } else {
-                emojiPreferenceKeys = []
-                columnAmount = 5
-                height = 392
-                gridLeadingPadding = 10
-            }
-        }
+//        .onChange(of: sizeClass) { newValue in
+//            if newValue == .regular {
+//                emojiPreferenceKeys = []
+//                columnAmount = 3
+//                height = 259
+//                gridLeadingPadding = 2
+//            } else {
+//                emojiPreferenceKeys = []
+//                columnAmount = 5
+//                height = 392
+//                gridLeadingPadding = 10
+//            }
+//        }
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
             guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
             self.isPortrait = scene.interfaceOrientation.isPortrait
-            print(isPortrait)
+            if UIDevice.isIPhone {
+                if isPortrait {
+                    emojiPreferenceKeys = []
+                    columnAmount = 5
+                    height = 392
+                } else {
+                    emojiPreferenceKeys = []
+                    columnAmount = 3
+                    height = 259
+                }
+            }
         }
     }
     
