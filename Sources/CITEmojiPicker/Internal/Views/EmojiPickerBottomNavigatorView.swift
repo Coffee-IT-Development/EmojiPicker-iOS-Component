@@ -11,7 +11,6 @@ import SwiftUI
 struct EmojiPickerBottomNavigatorView: View {
     @Binding private var selectedSection: EmojiTypes
     @Binding private var emptyEmojiTypes: [EmojiTypes]
-    @Binding private var bottomBarDidNavigate: Bool
     private let reader: ScrollViewProxy
     private let emojiImageAssetSize: CGFloat = 16
     private var emojiBackgroundSize: CGFloat {
@@ -48,7 +47,6 @@ struct EmojiPickerBottomNavigatorView: View {
                         .onTapGesture {
                             reader.scrollTo(emojiType.rawValue, anchor: .leading)
                             selectedSection = emojiType
-                            bottomBarDidNavigate = true
                         }
                     }
                 }
@@ -57,10 +55,9 @@ struct EmojiPickerBottomNavigatorView: View {
         .frame(height: 32)
     }
     
-    init(selectedSection: Binding<EmojiTypes>, emptyEmojiTypes: Binding<[EmojiTypes]>, bottomBarDidNavigate: Binding<Bool>, reader: ScrollViewProxy) {
+    init(selectedSection: Binding<EmojiTypes>, emptyEmojiTypes: Binding<[EmojiTypes]>, reader: ScrollViewProxy) {
         self._selectedSection = selectedSection
         self._emptyEmojiTypes = emptyEmojiTypes
-        self._bottomBarDidNavigate = bottomBarDidNavigate
         self.reader = reader
     }
 }

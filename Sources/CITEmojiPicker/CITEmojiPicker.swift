@@ -16,7 +16,6 @@ public struct CITEmojiPicker: View {
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
     @State private var isPortrait = false
-    @State private var bottomBarDidNavigate = false
     
     private let gridLeadingPadding: CGFloat = 10
     private let didAddEmoji: (String) -> Void
@@ -91,12 +90,7 @@ public struct CITEmojiPicker: View {
                                 // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
                                 let extraOffSet: CGFloat = 16
                                 for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
-                                    if !bottomBarDidNavigate {
-                                        selectedSection = emojiPreferenceKey.emojiType
-                                    }
-                                }
-                                if bottomBarDidNavigate {
-                                    bottomBarDidNavigate = false
+                                    selectedSection = emojiPreferenceKey.emojiType
                                 }
                             }
                         }
@@ -106,7 +100,6 @@ public struct CITEmojiPicker: View {
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
                         emptyEmojiTypes: $viewModel.emptyEmojiTypes,
-                        bottomBarDidNavigate: $bottomBarDidNavigate,
                         reader: reader
                     )
                     .padding([.bottom, .horizontal], 16)
