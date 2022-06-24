@@ -17,9 +17,9 @@ public struct CITEmojiPicker: View {
     @State private var isSearchingForEmoji = false
     @State private var columnAmount = 5
     @State private var height: CGFloat = 392
+    @State private var gridLeadingPadding: CGFloat = 10
     
     private let didAddEmoji: (String) -> Void
-    private let gridLeadingPadding: CGFloat = 10
     
     public var body: some View {
         VStack {
@@ -58,7 +58,6 @@ public struct CITEmojiPicker: View {
                                         GeometryReader { proxy in
                                             if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
                                                 let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                let _ = print(yOffSet)
                                                 let _ = DispatchQueue.main.async {
                                                     emojiPreferenceKeys.append(
                                                         EmojiPreferenceKey(
@@ -113,10 +112,12 @@ public struct CITEmojiPicker: View {
                 emojiPreferenceKeys = []
                 columnAmount = 3
                 height = 259
+                gridLeadingPadding = 2
             } else {
                 emojiPreferenceKeys = []
                 columnAmount = 5
                 height = 392
+                gridLeadingPadding = 10
             }
         }
     }
