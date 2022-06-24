@@ -58,6 +58,7 @@ public struct CITEmojiPicker: View {
                                         GeometryReader { proxy in
                                             if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
                                                 let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                let _ = print(yOffSet)
                                                 let _ = DispatchQueue.main.async {
                                                     emojiPreferenceKeys.append(
                                                         EmojiPreferenceKey(
@@ -109,9 +110,11 @@ public struct CITEmojiPicker: View {
         .frame(height: height)
         .onChange(of: sizeClass) { newValue in
             if newValue == .regular {
+                emojiPreferenceKeys = []
                 columnAmount = 3
                 height = 259
             } else {
+                emojiPreferenceKeys = []
                 columnAmount = 5
                 height = 392
             }
