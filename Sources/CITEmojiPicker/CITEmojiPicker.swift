@@ -96,6 +96,19 @@ public struct CITEmojiPicker: View {
                         }
                     }
                     .coordinateSpace(name: "emoji")
+                    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                        guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+                        self.isPortrait = scene.interfaceOrientation.isPortrait
+                        if UIDevice.isIPhone {
+                            if viewModel.emptyEmojiTypes.contains(EmojiTypes.recents) {
+                                reader.scrollTo(EmojiTypes.smileysAndEmotion.rawValue)
+                            } else {
+                                reader.scrollTo(EmojiTypes.recents.rawValue)
+                            }
+                            
+                            emojiPreferenceKeys = []
+                        }
+                    }
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
@@ -112,13 +125,6 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
-        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-            self.isPortrait = scene.interfaceOrientation.isPortrait
-            if UIDevice.isIPhone {
-                emojiPreferenceKeys = []
-            }
-        }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
