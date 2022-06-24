@@ -95,8 +95,8 @@ public struct CITEmojiPicker: View {
                                         selectedSection = emojiPreferenceKey.emojiType
                                     }
                                 }
-                                if !bottomBarDidNavigate {
-                                    bottomBarDidNavigate = true
+                                if bottomBarDidNavigate {
+                                    bottomBarDidNavigate = false
                                 }
                             }
                         }
