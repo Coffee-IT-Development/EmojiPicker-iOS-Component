@@ -106,7 +106,11 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity, maxHeight: 392)
         .onChange(of: sizeClass) { newValue in
-            print(newValue)
+            if newValue == .regular {
+                columnAmount = 3
+            } else {
+                columnAmount = 5
+            }
         }
     }
     
