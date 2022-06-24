@@ -26,10 +26,8 @@ public struct CITEmojiPicker: View {
         isPortrait ? 392 : 259
     }
     private var scrollViewPadding: CGFloat {
-        if isPortrait {
+        if isPortrait || UIDevice.hasNotch {
             return 0
-        } else if UIDevice.hasNotch {
-            return -24
         } else {
             return -52
         }
