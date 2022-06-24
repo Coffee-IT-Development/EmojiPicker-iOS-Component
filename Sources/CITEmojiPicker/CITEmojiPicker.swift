@@ -71,6 +71,7 @@ public struct CITEmojiPicker: View {
                                                         )
                                                     )
                                                 }
+                                                let _ = print(emojiPreferenceKeys)
                                             }
                                             Color.clear
                                         }
