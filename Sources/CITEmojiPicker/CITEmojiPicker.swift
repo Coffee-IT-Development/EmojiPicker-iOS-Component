@@ -45,8 +45,8 @@ public struct CITEmojiPicker: View {
                                         UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
                                             Text(emoji.emoji)
                                                 .font(.system(size: 28))
-                                                .padding(.horizontal, isPortrait ? 7 : 3)
-                                                .padding(.vertical, isPortrait ? 3 : 1)
+                                                .padding(.horizontal, isPortrait ? 7 : 1)
+                                                .padding(.vertical, isPortrait ? 3 : 0)
                                                 .onTapGesture {
                                                     didAddEmoji(emoji.emoji)
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
