@@ -9,11 +9,13 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var viewModel = CITEmojiPickerViewModel()
     @StateObject private var keyboardHelper = KeyboardHelper()
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
+    @State private var columnAmount = 5
     
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
@@ -38,7 +40,7 @@ public struct CITEmojiPicker: View {
                                             .foregroundColor(.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
-                                        UIGrid(columns: 5, list: emojiGroup) { emoji in
+                                        UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
                                             Text(emoji.emoji)
                                                 .font(.system(size: 28))
                                                 .padding(.horizontal, 7)
@@ -103,6 +105,9 @@ public struct CITEmojiPicker: View {
         }
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity, maxHeight: 392)
+        .onChange(of: sizeClass) { newValue in
+            print(newValue)
+        }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
