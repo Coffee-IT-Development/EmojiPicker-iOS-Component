@@ -15,12 +15,16 @@ public struct CITEmojiPicker: View {
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
-    @State private var columnAmount = 5
-    @State private var height: CGFloat = 392
-    @State private var gridLeadingPadding: CGFloat = 10
     @State private var isPortrait = false
     
+    private let gridLeadingPadding: CGFloat = 10
     private let didAddEmoji: (String) -> Void
+    private var columnAmount: Int {
+        isPortrait ? 5 : 3
+    }
+    private var height: CGFloat {
+        isPortrait ? 392 : 259
+    }
     
     public var body: some View {
         VStack {
@@ -109,32 +113,11 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
-//        .onChange(of: sizeClass) { newValue in
-//            if newValue == .regular {
-//                emojiPreferenceKeys = []
-//                columnAmount = 3
-//                height = 259
-//                gridLeadingPadding = 2
-//            } else {
-//                emojiPreferenceKeys = []
-//                columnAmount = 5
-//                height = 392
-//                gridLeadingPadding = 10
-//            }
-//        }
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
             guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
             self.isPortrait = scene.interfaceOrientation.isPortrait
             if UIDevice.isIPhone {
-                if isPortrait {
-                    emojiPreferenceKeys = []
-                    columnAmount = 5
-                    height = 392
-                } else {
-                    emojiPreferenceKeys = []
-                    columnAmount = 3
-                    height = 259
-                }
+                emojiPreferenceKeys = []
             }
         }
     }
