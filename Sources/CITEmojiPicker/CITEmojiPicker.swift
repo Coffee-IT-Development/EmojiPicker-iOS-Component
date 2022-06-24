@@ -38,12 +38,6 @@ public struct CITEmojiPicker: View {
             if !keyboardHelper.isOpen {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
-                        VStack(spacing: 0) {
-                            
-                        }
-                        .frame(width: 0, height: 0)
-                        .id("top")
-                        
                         HStack {
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
@@ -102,15 +96,6 @@ public struct CITEmojiPicker: View {
                         }
                     }
                     .coordinateSpace(name: "emoji")
-                    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                        guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-                        self.isPortrait = scene.interfaceOrientation.isPortrait
-                        if UIDevice.isIPhone {
-                            reader.scrollTo("top")
-                            
-                            emojiPreferenceKeys = []
-                        }
-                    }
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
@@ -127,6 +112,13 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+            self.isPortrait = scene.interfaceOrientation.isPortrait
+            if UIDevice.isIPhone {
+                emojiPreferenceKeys = []
+            }
+        }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
