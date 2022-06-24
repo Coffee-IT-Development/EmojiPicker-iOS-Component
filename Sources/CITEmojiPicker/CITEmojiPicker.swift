@@ -18,6 +18,7 @@ public struct CITEmojiPicker: View {
     @State private var columnAmount = 5
     @State private var height: CGFloat = 392
     @State private var gridLeadingPadding: CGFloat = 10
+    @State private var isPortrait = false
     
     private let didAddEmoji: (String) -> Void
     
@@ -119,6 +120,11 @@ public struct CITEmojiPicker: View {
                 height = 392
                 gridLeadingPadding = 10
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+            self.isPortrait = scene.interfaceOrientation.isPortrait
+            print(isPortrait)
         }
     }
     
