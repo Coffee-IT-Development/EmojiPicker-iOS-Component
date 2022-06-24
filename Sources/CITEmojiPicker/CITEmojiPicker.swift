@@ -93,9 +93,10 @@ public struct CITEmojiPicker: View {
                                 for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
                                     if !bottomBarDidNavigate {
                                         selectedSection = emojiPreferenceKey.emojiType
-                                    } else {
-                                        bottomBarDidNavigate = false
                                     }
+                                }
+                                if !bottomBarDidNavigate {
+                                    bottomBarDidNavigate = true
                                 }
                             }
                         }
