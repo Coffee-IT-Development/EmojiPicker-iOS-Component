@@ -110,10 +110,12 @@ public struct CITEmojiPicker: View {
         .onChange(of: sizeClass) { newValue in
             if newValue == .regular {
                 columnAmount = 3
-                height = 352
+                height = 200
+                print(height)
             } else {
                 columnAmount = 5
                 height = 392
+                print(height)
             }
         }
     }
