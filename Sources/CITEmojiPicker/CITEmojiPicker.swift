@@ -25,13 +25,6 @@ public struct CITEmojiPicker: View {
     private var height: CGFloat {
         isPortrait ? 392 : 259
     }
-    private var scrollViewPadding: CGFloat {
-        if isPortrait || UIDevice.hasNotch {
-            return 0
-        } else {
-            return -52
-        }
-    }
     
     public var body: some View {
         VStack {
@@ -102,7 +95,6 @@ public struct CITEmojiPicker: View {
                             }
                         }
                     }
-                    .padding(.leading, scrollViewPadding)
                     .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
