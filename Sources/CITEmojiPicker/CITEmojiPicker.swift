@@ -29,7 +29,7 @@ public struct CITEmojiPicker: View {
         if isPortrait {
             return 0
         } else if UIDevice.hasNotch {
-            return -46
+            return -24
         } else {
             return -52
         }
