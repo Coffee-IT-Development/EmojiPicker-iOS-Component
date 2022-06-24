@@ -59,22 +59,22 @@ public struct CITEmojiPicker: View {
                                     }
                                     .id(emojiType)
                                     .padding(.leading, gridLeadingPadding)
-//                                    .background(
-//                                        GeometryReader { proxy in
-//                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-//                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
-//                                                let _ = DispatchQueue.main.async {
-//                                                    emojiPreferenceKeys.append(
-//                                                        EmojiPreferenceKey(
-//                                                            emojiType: emojiType,
-//                                                            yOffset: yOffSet
-//                                                        )
-//                                                    )
-//                                                }
-//                                            }
-//                                            Color.clear
-//                                        }
-//                                    )
+                                    .background(
+                                        GeometryReader { proxy in
+                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
+                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                let _ = DispatchQueue.main.async {
+                                                    emojiPreferenceKeys.append(
+                                                        EmojiPreferenceKey(
+                                                            emojiType: emojiType,
+                                                            yOffset: yOffSet
+                                                        )
+                                                    )
+                                                }
+                                            }
+                                            Color.clear
+                                        }
+                                    )
                                 }
                             }
                         }
@@ -83,6 +83,7 @@ public struct CITEmojiPicker: View {
                                 key: YOffsetScrollValuePreferenceKey.self,
                                 value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
                             )
+                            let _ = print(-$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding)
                         })
                         .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
                             DispatchQueue.main.async {
