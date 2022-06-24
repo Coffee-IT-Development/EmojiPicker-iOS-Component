@@ -16,6 +16,7 @@ public struct CITEmojiPicker: View {
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
     @State private var columnAmount = 5
+    @State private var height: CGFloat = 392
     
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
@@ -109,8 +110,10 @@ public struct CITEmojiPicker: View {
         .onChange(of: sizeClass) { newValue in
             if newValue == .regular {
                 columnAmount = 3
+                height = 352
             } else {
                 columnAmount = 5
+                height = 392
             }
         }
     }
