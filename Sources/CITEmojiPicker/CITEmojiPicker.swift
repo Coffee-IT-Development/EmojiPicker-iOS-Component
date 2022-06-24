@@ -51,25 +51,27 @@ public struct CITEmojiPicker: View {
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
                                                 }
                                         }
+                                        .background(
+                                            GeometryReader { proxy in
+                                                if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
+                                                    let yOffSet = proxy.frame(in: .named("emoji")).minX
+                                                    let _ = print(yOffSet)
+                                                    let _ = DispatchQueue.main.async {
+                                                        emojiPreferenceKeys.append(
+                                                            EmojiPreferenceKey(
+                                                                emojiType: emojiType,
+                                                                yOffset: yOffSet
+                                                            )
+                                                        )
+                                                    }
+                                                }
+                                                Color.clear
+                                            }
+                                        )
                                     }
                                     .id(emojiType)
                                     .padding(.leading, gridLeadingPadding)
-                                    .background(
-                                        GeometryReader { proxy in
-                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                let _ = DispatchQueue.main.async {
-                                                    emojiPreferenceKeys.append(
-                                                        EmojiPreferenceKey(
-                                                            emojiType: emojiType,
-                                                            yOffset: yOffSet
-                                                        )
-                                                    )
-                                                }
-                                            }
-                                            Color.clear
-                                        }
-                                    )
+                                    
                                 }
                             }
                         }
