@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "CITEmojiPicker",
+    defaultLocalization: "en",
     platforms: [
             .iOS(.v14)
         ],
@@ -25,7 +26,8 @@ let package = Package(
             name: "CITEmojiPicker",
             dependencies: [],
             resources: [
-                .process("Internal/Essentials/emojis-by-group.json")
+                .process("Internal/Essentials/emojis-by-group.json"),
+                .process("Internal/Localisations")
             ]
         ),
         .testTarget(

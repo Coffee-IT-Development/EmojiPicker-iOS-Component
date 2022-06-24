@@ -15,7 +15,6 @@ public struct CITEmojiPicker: View {
     @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
     
-    private let searchEmojiPlaceholder: String
     private let didAddEmoji: (String) -> Void
     private let gridLeadingPadding: CGFloat = 10
     
@@ -25,8 +24,7 @@ public struct CITEmojiPicker: View {
                 viewModel: viewModel,
                 didAddEmoji: didAddEmoji,
                 isSearchingForEmoji: $isSearchingForEmoji,
-                keyboardIsOpen: $keyboardHelper.isOpen,
-                searchEmojiPlaceholder: searchEmojiPlaceholder
+                keyboardIsOpen: $keyboardHelper.isOpen
             )
             
             if !keyboardHelper.isOpen {
@@ -36,7 +34,7 @@ public struct CITEmojiPicker: View {
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
-                                        Text(emojiType.rawValue)
+                                        Text(emojiType.lokalisedString)
                                             .foregroundColor(.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
@@ -107,8 +105,7 @@ public struct CITEmojiPicker: View {
         .frame(maxWidth: .infinity, maxHeight: 392)
     }
     
-    public init(searchEmojiPlaceholder: String, didAddEmoji: @escaping (String) -> Void) {
-        self.searchEmojiPlaceholder = searchEmojiPlaceholder
+    public init(didAddEmoji: @escaping (String) -> Void) {
         self.didAddEmoji = didAddEmoji
     }
 }
