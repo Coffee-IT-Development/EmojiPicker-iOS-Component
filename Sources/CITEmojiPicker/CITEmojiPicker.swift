@@ -83,7 +83,6 @@ public struct CITEmojiPicker: View {
                                 key: YOffsetScrollValuePreferenceKey.self,
                                 value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
                             )
-                            let _ = print(-$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding)
                         })
                         .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
                             DispatchQueue.main.async {
@@ -118,6 +117,7 @@ public struct CITEmojiPicker: View {
             self.isPortrait = scene.interfaceOrientation.isPortrait
             if UIDevice.isIPhone {
                 emojiPreferenceKeys = []
+                selectedSection = EmojiTypes.smileysAndEmotion
             }
         }
     }
