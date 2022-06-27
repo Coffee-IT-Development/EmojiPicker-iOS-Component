@@ -39,6 +39,8 @@ public struct CITEmojiPicker: View {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
+                            EmptyView()
+                                .id("beginning")
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
@@ -99,8 +101,7 @@ public struct CITEmojiPicker: View {
                             self.isPortrait = scene.interfaceOrientation.isPortrait
                             if UIDevice.isIPhone {
                                 emojiPreferenceKeys = []
-                                selectedSection = EmojiTypes.smileysAndEmotion
-                                reader.scrollTo(EmojiTypes.smileysAndEmotion.rawValue)
+                                reader.scrollTo("beginning")
                             }
                         }
                     }
