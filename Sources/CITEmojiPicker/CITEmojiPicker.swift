@@ -25,7 +25,6 @@ public struct CITEmojiPicker: View {
     private var height: CGFloat {
         isPortrait ? 392 : 259
     }
-    @State private var allEmojiTypes = [EmojiTypes]()
     
     public var body: some View {
         VStack {
@@ -63,37 +62,18 @@ public struct CITEmojiPicker: View {
                                     .background(
                                         GeometryReader { proxy in
                                             Color.clear
-                                                .onAppear {
-                                                    allEmojiTypes.append(emojiType)
-                                                }
                                                 .anchorPreference(key: ItemLeadingPreferenceKey.self, value: .leading) { [$0] }
                                         }
                                     )
                                 }
                             }
                         }
-//                        .background(GeometryReader {
-//                            Color.clear.preference(
-//                                key: YOffsetScrollValuePreferenceKey.self,
-//                                value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
-//                            )
-//                        })
-//                        .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
-//                            DispatchQueue.main.async {
-//                                guard !emojiPreferenceKeys.isEmpty else { return }
-//                                // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
-//                                let extraOffSet: CGFloat = 16
-//                                for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
-//                                    selectedSection = emojiPreferenceKey.emojiType
-//                                }
-//                            }
-//                        }
                     }
                     .overlayPreferenceValue(ItemLeadingPreferenceKey.self) { anchors in
                         GeometryReader { proxy in
                             // Find the index of the last anchor for which the x value is <= 0
                             // (indicating that it scrolled passed the beginning of the view)
-                            let index = anchors.lastIndex(where: { proxy[$0].x <= 0 }) ?? 0
+                            let index = anchors.lastIndex(where: { proxy[$0].x <= 16 }) ?? 0
                             
                             // Use this index to update the selected number
                             Color.clear
