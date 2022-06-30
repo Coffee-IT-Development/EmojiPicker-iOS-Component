@@ -25,7 +25,7 @@ class CITEmojiPickerViewModel: ObservableObject {
         filterEmojis()
 //        fillSearchEmojiList()
         getRecentEmojis()
-//        fillAvailableEmojiTypes()
+        fillAvailableEmojiTypes()
     }
     
     private func filterEmojis() {
@@ -38,11 +38,8 @@ class CITEmojiPickerViewModel: ObservableObject {
                 searchEmojiArray.append(emoji)
             }
             
-            if !emojiGroup.isEmpty {
-                availableEmojiTypes.append(emojiType)
-                emojisByGroup[emojiType.rawValue] = emojiGroup
-                emojiGroup = []
-            }
+            emojisByGroup[emojiType.rawValue] = emojiGroup
+            emojiGroup = []
         }
         self.emojisByGroup = emojisByGroup
     }
