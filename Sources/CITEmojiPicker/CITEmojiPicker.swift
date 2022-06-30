@@ -109,8 +109,8 @@ public struct CITEmojiPicker: View {
                             // Use this index to update the selected number
                             Color.clear
                                 .onAppear {
-                                    print(allEmojiTypes.count)
-                                    selectedSection = allEmojiTypes[index - 1]
+//                                    print(allEmojiTypes.count)
+//                                    selectedSection = allEmojiTypes[index - 1]
                                 }
                                 .onChange(of: index) {
                                     selectedSection = allEmojiTypes[$0 - 1]
