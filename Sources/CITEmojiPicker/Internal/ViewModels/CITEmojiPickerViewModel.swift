@@ -30,12 +30,11 @@ class CITEmojiPickerViewModel: ObservableObject {
     
     private func filterEmojis() {
         var emojisByGroup: EmojiGroups = [:]
-        var searchEmojiArray = [EmojisByGroup]()
         var emojiGroup: [EmojisByGroup] = []
         for emojiType in EmojiTypes.allCases {
             for emoji in emojiGroups[emojiType.rawValue] ?? [] where emoji.emoji.isSingleEmoji {
                 emojiGroup.append(emoji)
-                searchEmojiArray.append(emoji)
+                searchEmojis.append(emoji.emoji)
             }
             
             emojisByGroup[emojiType.rawValue] = emojiGroup
