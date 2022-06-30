@@ -9,7 +9,7 @@
 
 ## How to use
 
-Add `CITEmojiPicker` to a view and add a frame height of 392. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
+Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
 
 ```
 struct ContentView: View {
@@ -19,7 +19,6 @@ struct ContentView: View {
             CITEmojiPicker { emoji in
                 print(emoji)
             }
-            .frame(height: 392)
         }
         .ignoresSafeArea(.keyboard)
     }
@@ -46,3 +45,4 @@ Actively maintained by Hugo
 - added Search field
 - added Recents
 - added Localisations
+- added Landscape mode support
