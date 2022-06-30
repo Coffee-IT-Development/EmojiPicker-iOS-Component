@@ -28,7 +28,7 @@ public struct CITEmojiPicker: View {
     }
     private var extraSearchIpadHeight: CGFloat {
         let extraHeight = isPortrait ? 100 : 200
-        return keyboardHelper.height + extraHeight
+        return keyboardHelper.height + CGFloat(extraHeight)
     }
     
     public var body: some View {
