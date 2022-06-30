@@ -26,6 +26,10 @@ public struct CITEmojiPicker: View {
     private var height: CGFloat {
         isPortrait ? 392 : 259
     }
+    private var extraSearchIpadHeight: CGFloat {
+        let extraHeight = isPortrait ? 100 : 200
+        keyboardHelper.height + isPortrait
+    }
     
     public var body: some View {
         VStack {
@@ -96,7 +100,7 @@ public struct CITEmojiPicker: View {
                 }
             } else {
                 Spacer()
-                    .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
+                    .frame(height: UIDevice.isIPad ? extraSearchIpadHeight : keyboardHelper.height - 40)
             }
         }
         .background(Color.sheetBackground.ignoresSafeArea())
