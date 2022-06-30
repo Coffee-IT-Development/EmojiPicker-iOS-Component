@@ -23,23 +23,27 @@ class CITEmojiPickerViewModel: ObservableObject {
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         emojisByGroup = filterEmojis()
-        fillSearchEmojiList()
+//        fillSearchEmojiList()
         getRecentEmojis()
-        fillAvailableEmojiTypes()
+//        fillAvailableEmojiTypes()
     }
     
-    private func filterEmojis() -> EmojiGroups {
+    private func filterEmojis() {
         var emojisByGroup: EmojiGroups = [:]
+        var searchEmojiArray = [EmojisByGroup]()
         var emojiGroup: [EmojisByGroup] = []
         for emojiType in EmojiTypes.allCases {
             for emoji in emojiGroups[emojiType.rawValue] ?? [] where emoji.emoji.isSingleEmoji {
                 emojiGroup.append(emoji)
+                searchEmojiArray.append(emoji)
             }
             
-            emojisByGroup[emojiType.rawValue] = emojiGroup
-            emojiGroup = []
+            if !emojiGroup.isEmpty {
+                availableEmojiTypes.append(emojiType)
+                emojisByGroup[emojiType.rawValue] = emojiGroup
+                emojiGroup = []
+            }
         }
-        return emojisByGroup
     }
     
     private func fillSearchEmojiList() {

@@ -14,7 +14,7 @@ public struct CITEmojiPicker: View {
     @StateObject private var keyboardHelper = KeyboardHelper()
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
     @State private var isSearchingForEmoji = false
-    @State private var isPortrait = false
+    @State private var isPortrait = UIDevice.current.orientation.isPortrait
     
     private let gridHorizontalPadding: CGFloat = 16
     private let gridLeadingPadding: CGFloat = 10
