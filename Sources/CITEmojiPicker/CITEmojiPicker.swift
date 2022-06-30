@@ -84,7 +84,7 @@ public struct CITEmojiPicker: View {
                                     selectedSection = viewModel.availableEmojiTypes[$0]
                                 }
                         }
-                        .ignoresSafeArea()
+//                        .ignoresSafeArea()
                     }
                     .coordinateSpace(name: "emoji")
                     
