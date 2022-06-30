@@ -9,14 +9,31 @@
 import SwiftUI
 
 public struct CITEmojiPicker: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var viewModel = CITEmojiPickerViewModel()
     @StateObject private var keyboardHelper = KeyboardHelper()
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
-    @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
+    @State private var isPortrait = false
     
-    private let didAddEmoji: (String) -> Void
+    private let gridHorizontalPadding: CGFloat = 16
     private let gridLeadingPadding: CGFloat = 10
+    private let didAddEmoji: (String) -> Void
+    
+    private var columnAmount: Int {
+        isPortrait ? 5 : 3
+    }
+    private var height: CGFloat {
+        isPortrait ? 392 : 259
+    }
+    private var extraSearchIpadHeight: CGFloat {
+        let extraHeight = isPortrait ? 100 : 320
+        return keyboardHelper.height + CGFloat(extraHeight)
+    }
+    private var extraSearchPhoneHeight: CGFloat {
+        let extraHeight = isPortrait ? 40 : 100
+        return keyboardHelper.height - CGFloat(extraHeight)
+    }
     
     public var body: some View {
         VStack {
@@ -38,11 +55,11 @@ public struct CITEmojiPicker: View {
                                             .foregroundColor(.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
-                                        UIGrid(columns: 5, list: emojiGroup) { emoji in
+                                        UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
                                             Text(emoji.emoji)
                                                 .font(.system(size: 28))
-                                                .padding(.horizontal, 7)
-                                                .padding(.vertical, 3)
+                                                .padding(.horizontal, isPortrait ? 7 : 1)
+                                                .padding(.vertical, isPortrait ? 3 : 0)
                                                 .onTapGesture {
                                                     didAddEmoji(emoji.emoji)
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
@@ -53,56 +70,50 @@ public struct CITEmojiPicker: View {
                                     .padding(.leading, gridLeadingPadding)
                                     .background(
                                         GeometryReader { proxy in
-                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                let _ = DispatchQueue.main.async {
-                                                    emojiPreferenceKeys.append(
-                                                        EmojiPreferenceKey(
-                                                            emojiType: emojiType,
-                                                            yOffset: yOffSet
-                                                        )
-                                                    )
-                                                }
-                                            }
                                             Color.clear
+                                                .anchorPreference(key: EmojiLeadingPreferenceKey.self, value: .leading) { [$0] }
                                         }
                                     )
                                 }
                             }
                         }
-                        .background(GeometryReader {
-                            Color.clear.preference(
-                                key: YOffsetScrollValuePreferenceKey.self,
-                                value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
-                            )
-                        })
-                        .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
-                            DispatchQueue.main.async {
-                                guard !emojiPreferenceKeys.isEmpty else { return }
-                                // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
-                                let extraOffSet: CGFloat = 16
-                                for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
-                                    selectedSection = emojiPreferenceKey.emojiType
+                    }
+                    .overlayPreferenceValue(EmojiLeadingPreferenceKey.self) { anchors in
+                        GeometryReader { proxy in
+                            // Find the index of the last anchor for which the x value is <= 16
+                            // (indicating that it scrolled passed the beginning of the view + the padding)
+                            let index = anchors.lastIndex(where: { proxy[$0].x <= gridHorizontalPadding }) ?? 0
+                            
+                            // Use this index to update the selected number
+                            Color.clear
+                                .onAppear {
+                                    selectedSection = viewModel.availableEmojiTypes[index]
                                 }
-                            }
+                                .onChange(of: index) {
+                                    selectedSection = viewModel.availableEmojiTypes[$0]
+                                }
                         }
                     }
-                    .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
-                        emptyEmojiTypes: $viewModel.emptyEmojiTypes,
+                        availableEmojiTypes: $viewModel.availableEmojiTypes,
                         reader: reader
                     )
-                    .padding([.bottom, .horizontal], 16)
+                    .padding([.bottom, .horizontal], gridHorizontalPadding)
                 }
             } else {
                 Spacer()
-                    .frame(height: UIDevice.isIPad ? keyboardHelper.height + 100 : keyboardHelper.height - 40)
+                    .frame(height: UIDevice.isIPad ? extraSearchIpadHeight : extraSearchPhoneHeight)
             }
         }
         .background(Color.sheetBackground.ignoresSafeArea())
-        .frame(maxWidth: .infinity, maxHeight: 392)
+        .frame(maxWidth: .infinity)
+        .frame(height: height)
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+            self.isPortrait = scene.interfaceOrientation.isPortrait
+        }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
