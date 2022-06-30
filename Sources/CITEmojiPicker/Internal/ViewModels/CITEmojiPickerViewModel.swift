@@ -22,7 +22,7 @@ class CITEmojiPickerViewModel: ObservableObject {
     
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
-        emojisByGroup = filterEmojis()
+        filterEmojis()
 //        fillSearchEmojiList()
         getRecentEmojis()
 //        fillAvailableEmojiTypes()
