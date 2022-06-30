@@ -38,11 +38,9 @@ class CITEmojiPickerViewModel: ObservableObject {
                 searchEmojiArray.append(emoji)
             }
             
-            if !emojiGroup.isEmpty {
-                availableEmojiTypes.append(emojiType)
-                emojisByGroup[emojiType.rawValue] = emojiGroup
-                emojiGroup = []
-            }
+            availableEmojiTypes.append(emojiType)
+            emojisByGroup[emojiType.rawValue] = emojiGroup
+            emojiGroup = []
         }
     }
     
