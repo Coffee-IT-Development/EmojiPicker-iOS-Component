@@ -62,17 +62,6 @@ public struct CITEmojiPicker: View {
                                     .padding(.leading, gridLeadingPadding)
                                     .background(
                                         GeometryReader { proxy in
-//                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-//                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
-//                                                let _ = DispatchQueue.main.async {
-//                                                    emojiPreferenceKeys.append(
-//                                                        EmojiPreferenceKey(
-//                                                            emojiType: emojiType,
-//                                                            yOffset: yOffSet
-//                                                        )
-//                                                    )
-//                                                }
-//                                            }
                                             Color.clear
                                                 .onAppear {
                                                     allEmojiTypes.append(emojiType)
@@ -109,11 +98,10 @@ public struct CITEmojiPicker: View {
                             // Use this index to update the selected number
                             Color.clear
                                 .onAppear {
-//                                    print(allEmojiTypes.count)
-//                                    selectedSection = allEmojiTypes[index - 1]
+                                    selectedSection = viewModel.availableEmojiTypes[index]
                                 }
                                 .onChange(of: index) {
-                                    selectedSection = allEmojiTypes[$0]
+                                    selectedSection = viewModel.availableEmojiTypes[$0]
                                 }
                         }
                         .ignoresSafeArea()
@@ -122,7 +110,7 @@ public struct CITEmojiPicker: View {
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
-                        emptyEmojiTypes: $viewModel.emptyEmojiTypes,
+                        availableEmojiTypes: $viewModel.availableEmojiTypes,
                         reader: reader
                     )
                     .padding([.bottom, .horizontal], 16)

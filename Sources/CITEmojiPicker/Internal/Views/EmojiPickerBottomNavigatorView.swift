@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EmojiPickerBottomNavigatorView: View {
     @Binding private var selectedSection: EmojiTypes
-    @Binding private var emptyEmojiTypes: [EmojiTypes]
+    @Binding private var availableEmojiTypes: [EmojiTypes]
     private let reader: ScrollViewProxy
     private let emojiImageAssetSize: CGFloat = 16
     private var emojiBackgroundSize: CGFloat {
@@ -25,7 +25,7 @@ struct EmojiPickerBottomNavigatorView: View {
             
             HStack(spacing: 8) {
                 ForEach(EmojiTypes.allCases) { emojiType in
-                    if !emptyEmojiTypes.contains(emojiType) {
+                    if availableEmojiTypes.contains(emojiType) {
                         ZStack {
                             if emojiType == selectedSection {
                                 Rectangle()
@@ -57,9 +57,9 @@ struct EmojiPickerBottomNavigatorView: View {
         .frame(height: 32)
     }
     
-    init(selectedSection: Binding<EmojiTypes>, emptyEmojiTypes: Binding<[EmojiTypes]>, reader: ScrollViewProxy) {
+    init(selectedSection: Binding<EmojiTypes>, availableEmojiTypes: Binding<[EmojiTypes]>, reader: ScrollViewProxy) {
         self._selectedSection = selectedSection
-        self._emptyEmojiTypes = emptyEmojiTypes
+        self._availableEmojiTypes = availableEmojiTypes
         self.reader = reader
     }
 }
