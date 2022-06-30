@@ -62,9 +62,6 @@ public struct CITEmojiPicker: View {
                                     .padding(.leading, gridLeadingPadding)
                                     .background(
                                         GeometryReader { proxy in
-                                            if allEmojiTypes.count < EmojiTypes.allCases.count {
-                                                let _ = allEmojiTypes.append(emojiType)
-                                            }
 //                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
 //                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
 //                                                let _ = DispatchQueue.main.async {
@@ -77,6 +74,9 @@ public struct CITEmojiPicker: View {
 //                                                }
 //                                            }
                                             Color.clear
+                                                .onAppear {
+                                                    allEmojiTypes.append(emojiType)
+                                                }
                                                 .anchorPreference(key: ItemLeadingPreferenceKey.self, value: .leading) { [$0] }
                                         }
                                     )
@@ -113,7 +113,7 @@ public struct CITEmojiPicker: View {
 //                                    selectedSection = allEmojiTypes[index - 1]
                                 }
                                 .onChange(of: index) {
-                                    selectedSection = allEmojiTypes[$0 - 1]
+                                    selectedSection = allEmojiTypes[$0]
                                 }
                         }
                         .ignoresSafeArea()
