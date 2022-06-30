@@ -31,7 +31,7 @@ public struct CITEmojiPicker: View {
         return keyboardHelper.height + CGFloat(extraHeight)
     }
     private var extraSearchPhoneHeight: CGFloat {
-        let extraHeight = isPortrait ? 40 : 80
+        let extraHeight = isPortrait ? 40 : 100
         return keyboardHelper.height - CGFloat(extraHeight)
     }
     
