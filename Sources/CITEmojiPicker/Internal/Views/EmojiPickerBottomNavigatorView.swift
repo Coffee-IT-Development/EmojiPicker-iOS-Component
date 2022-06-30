@@ -45,10 +45,8 @@ struct EmojiPickerBottomNavigatorView: View {
                             .frame(maxWidth: .infinity)
                         }
                         .onTapGesture {
-                            withAnimation {
-                                reader.scrollTo(emojiType.rawValue, anchor: .leading)
-                                selectedSection = emojiType
-                            }
+                            reader.scrollTo(emojiType.rawValue, anchor: .leading)
+                            selectedSection = emojiType
                         }
                     }
                 }
