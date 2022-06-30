@@ -34,7 +34,7 @@ class CITEmojiPickerViewModel: ObservableObject {
         for emojiType in EmojiTypes.allCases {
             for emoji in emojiGroups[emojiType.rawValue] ?? [] where emoji.emoji.isSingleEmoji {
                 emojiGroup.append(emoji)
-                searchEmojiArray.append(emoji.emoji)
+                searchEmojiArray.append(emoji)
             }
             
             emojisByGroup[emojiType.rawValue] = emojiGroup
