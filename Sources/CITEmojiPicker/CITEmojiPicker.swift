@@ -13,12 +13,13 @@ public struct CITEmojiPicker: View {
     @StateObject private var viewModel = CITEmojiPickerViewModel()
     @StateObject private var keyboardHelper = KeyboardHelper()
     @State private var selectedSection: EmojiTypes = .smileysAndEmotion
-    @State private var emojiPreferenceKeys: [EmojiPreferenceKey] = []
     @State private var isSearchingForEmoji = false
     @State private var isPortrait = false
     
+    private let gridHorizontalPadding: CGFloat = 16
     private let gridLeadingPadding: CGFloat = 10
     private let didAddEmoji: (String) -> Void
+    
     private var columnAmount: Int {
         isPortrait ? 5 : 3
     }
@@ -62,18 +63,18 @@ public struct CITEmojiPicker: View {
                                     .background(
                                         GeometryReader { proxy in
                                             Color.clear
-                                                .anchorPreference(key: ItemLeadingPreferenceKey.self, value: .leading) { [$0] }
+                                                .anchorPreference(key: EmojiLeadingPreferenceKey.self, value: .leading) { [$0] }
                                         }
                                     )
                                 }
                             }
                         }
                     }
-                    .overlayPreferenceValue(ItemLeadingPreferenceKey.self) { anchors in
+                    .overlayPreferenceValue(EmojiLeadingPreferenceKey.self) { anchors in
                         GeometryReader { proxy in
-                            // Find the index of the last anchor for which the x value is <= 0
-                            // (indicating that it scrolled passed the beginning of the view)
-                            let index = anchors.lastIndex(where: { proxy[$0].x <= 16 }) ?? 0
+                            // Find the index of the last anchor for which the x value is <= 16
+                            // (indicating that it scrolled passed the beginning of the view + the padding)
+                            let index = anchors.lastIndex(where: { proxy[$0].x <= gridHorizontalPadding }) ?? 0
                             
                             // Use this index to update the selected number
                             Color.clear
@@ -84,16 +85,14 @@ public struct CITEmojiPicker: View {
                                     selectedSection = viewModel.availableEmojiTypes[$0]
                                 }
                         }
-//                        .ignoresSafeArea()
                     }
-                    .coordinateSpace(name: "emoji")
                     
                     EmojiPickerBottomNavigatorView(
                         selectedSection: $selectedSection,
                         availableEmojiTypes: $viewModel.availableEmojiTypes,
                         reader: reader
                     )
-                    .padding([.bottom, .horizontal], 16)
+                    .padding([.bottom, .horizontal], gridHorizontalPadding)
                 }
             } else {
                 Spacer()
@@ -106,21 +105,10 @@ public struct CITEmojiPicker: View {
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
             guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
             self.isPortrait = scene.interfaceOrientation.isPortrait
-            if UIDevice.isIPhone {
-                emojiPreferenceKeys = []
-            }
         }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
         self.didAddEmoji = didAddEmoji
-    }
-}
-
-struct ItemLeadingPreferenceKey: PreferenceKey {
-    static let defaultValue: [Anchor<CGPoint>] = []
-    
-    static func reduce(value: inout [Anchor<CGPoint>], nextValue: () -> [Anchor<CGPoint>]) {
-        value.append(contentsOf: nextValue())
     }
 }
