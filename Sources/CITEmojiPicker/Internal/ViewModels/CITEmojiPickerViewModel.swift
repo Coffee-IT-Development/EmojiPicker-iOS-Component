@@ -23,7 +23,6 @@ class CITEmojiPickerViewModel: ObservableObject {
     init() {
         emojiGroups = JSONFileDecoder.decodeEmojis()
         filterEmojis()
-//        fillSearchEmojiList()
         getRecentEmojis()
         fillAvailableEmojiTypes()
     }
@@ -41,16 +40,6 @@ class CITEmojiPickerViewModel: ObservableObject {
             emojiGroup = []
         }
         self.emojisByGroup = emojisByGroup
-    }
-    
-    private func fillSearchEmojiList() {
-        var emojiArray = [EmojisByGroup]()
-        for emojiType in EmojiTypes.allCases {
-            for emoji in emojisByGroup[emojiType.rawValue] ?? [] {
-                emojiArray.append(emoji)
-            }
-        }
-        searchEmojiArray = emojiArray
     }
     
     private func getRecentEmojis() {
