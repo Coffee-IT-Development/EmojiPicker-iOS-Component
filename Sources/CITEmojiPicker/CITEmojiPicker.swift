@@ -25,6 +25,7 @@ public struct CITEmojiPicker: View {
     private var height: CGFloat {
         isPortrait ? 392 : 259
     }
+    @State private var allEmojiTypes = [EmojiTypes]()
     
     public var body: some View {
         VStack {
@@ -39,8 +40,6 @@ public struct CITEmojiPicker: View {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal) {
                         HStack {
-                            EmptyView()
-                                .id("beginning")
                             ForEach(EmojiTypes.allCases, id: \.rawValue) { emojiType in
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
@@ -63,47 +62,60 @@ public struct CITEmojiPicker: View {
                                     .padding(.leading, gridLeadingPadding)
                                     .background(
                                         GeometryReader { proxy in
-                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
-                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
-                                                let _ = DispatchQueue.main.async {
-                                                    emojiPreferenceKeys.append(
-                                                        EmojiPreferenceKey(
-                                                            emojiType: emojiType,
-                                                            yOffset: yOffSet
-                                                        )
-                                                    )
-                                                }
+                                            if allEmojiTypes.count < EmojiTypes.allCases.count {
+                                                let _ = allEmojiTypes.append(emojiType)
                                             }
+//                                            if emojiPreferenceKeys.count < EmojiTypes.allCases.count {
+//                                                let yOffSet = proxy.frame(in: .named("emoji")).minX
+//                                                let _ = DispatchQueue.main.async {
+//                                                    emojiPreferenceKeys.append(
+//                                                        EmojiPreferenceKey(
+//                                                            emojiType: emojiType,
+//                                                            yOffset: yOffSet
+//                                                        )
+//                                                    )
+//                                                }
+//                                            }
                                             Color.clear
+                                                .anchorPreference(key: ItemLeadingPreferenceKey.self, value: .leading) { [$0] }
                                         }
                                     )
                                 }
                             }
                         }
-                        .background(GeometryReader {
-                            Color.clear.preference(
-                                key: YOffsetScrollValuePreferenceKey.self,
-                                value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
-                            )
-                        })
-                        .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
-                            DispatchQueue.main.async {
-                                guard !emojiPreferenceKeys.isEmpty else { return }
-                                // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
-                                let extraOffSet: CGFloat = 16
-                                for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
-                                    selectedSection = emojiPreferenceKey.emojiType
+//                        .background(GeometryReader {
+//                            Color.clear.preference(
+//                                key: YOffsetScrollValuePreferenceKey.self,
+//                                value: -$0.frame(in: .named("emoji")).origin.x - gridLeadingPadding
+//                            )
+//                        })
+//                        .onPreferenceChange(YOffsetScrollValuePreferenceKey.self) { viewYOffsetKey in
+//                            DispatchQueue.main.async {
+//                                guard !emojiPreferenceKeys.isEmpty else { return }
+//                                // This is added because the extra offset is needed for when you click on the EmojiPickerBottomNavigator
+//                                let extraOffSet: CGFloat = 16
+//                                for emojiPreferenceKey in emojiPreferenceKeys where emojiPreferenceKey.yOffset <= viewYOffsetKey + extraOffSet {
+//                                    selectedSection = emojiPreferenceKey.emojiType
+//                                }
+//                            }
+//                        }
+                    }
+                    .overlayPreferenceValue(ItemLeadingPreferenceKey.self) { anchors in
+                        GeometryReader { proxy in
+                            // Find the index of the last anchor for which the x value is <= 0
+                            // (indicating that it scrolled passed the beginning of the view)
+                            let index = anchors.lastIndex(where: { proxy[$0].x <= 0 }) ?? 0
+                            
+                            // Use this index to update the selected number
+                            Color.clear
+                                .onAppear {
+                                    selectedSection = allEmojiTypes[index]
                                 }
-                            }
+                                .onChange(of: index) {
+                                    selectedSection = allEmojiTypes[$0]
+                                }
                         }
-                        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-                            self.isPortrait = scene.interfaceOrientation.isPortrait
-                            if UIDevice.isIPhone {
-                                emojiPreferenceKeys = []
-                                reader.scrollTo("beginning")
-                            }
-                        }
+                        .ignoresSafeArea()
                     }
                     .coordinateSpace(name: "emoji")
                     
@@ -122,9 +134,24 @@ public struct CITEmojiPicker: View {
         .background(Color.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+            self.isPortrait = scene.interfaceOrientation.isPortrait
+            if UIDevice.isIPhone {
+                emojiPreferenceKeys = []
+            }
+        }
     }
     
     public init(didAddEmoji: @escaping (String) -> Void) {
         self.didAddEmoji = didAddEmoji
+    }
+}
+
+struct ItemLeadingPreferenceKey: PreferenceKey {
+    static let defaultValue: [Anchor<CGPoint>] = []
+    
+    static func reduce(value: inout [Anchor<CGPoint>], nextValue: () -> [Anchor<CGPoint>]) {
+        value.append(contentsOf: nextValue())
     }
 }
