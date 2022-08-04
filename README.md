@@ -10,6 +10,7 @@
 ## How to use
 
 Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
+To get the unicode of an emoji use: emoji.unicode
 
 ```
 struct ContentView: View {
@@ -17,7 +18,7 @@ struct ContentView: View {
         VStack {
             Spacer()
             CITEmojiPicker { emoji in
-                print(emoji)
+                print(emoji.emoji)
             }
         }
         .ignoresSafeArea(.keyboard)
@@ -38,6 +39,10 @@ Actively maintained by Hugo
 
 
 ## Changeslog
+
+#### 1.0.1
+- added unicodes
+- CITEmojiPicker now returns an EmojiByGroup object
 
 #### 1.0.0
 
