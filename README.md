@@ -40,7 +40,7 @@ Actively maintained by Hugo
 
 ## Changeslog
 
-#### 1.0.1
+#### 1.0.2
 - added unicodes
 - CITEmojiPicker now returns an EmojiByGroup object
 
