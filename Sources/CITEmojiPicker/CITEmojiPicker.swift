@@ -18,7 +18,7 @@ public struct CITEmojiPicker: View {
     
     private let gridHorizontalPadding: CGFloat = 16
     private let gridLeadingPadding: CGFloat = 10
-    private let didAddEmoji: (String) -> Void
+    private let didAddEmoji: (EmojisByGroup) -> Void
     
     private var columnAmount: Int {
         isPortrait ? 5 : 3
@@ -61,7 +61,7 @@ public struct CITEmojiPicker: View {
                                                 .padding(.horizontal, isPortrait ? 7 : 1)
                                                 .padding(.vertical, isPortrait ? 3 : 0)
                                                 .onTapGesture {
-                                                    didAddEmoji(emoji.emoji)
+                                                    didAddEmoji(emoji)
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
                                                 }
                                         }
@@ -116,7 +116,7 @@ public struct CITEmojiPicker: View {
         }
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void) {
+    public init(didAddEmoji: @escaping (EmojisByGroup) -> Void) {
         self.didAddEmoji = didAddEmoji
     }
 }

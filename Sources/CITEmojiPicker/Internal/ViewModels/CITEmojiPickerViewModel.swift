@@ -10,7 +10,7 @@ import SwiftUI
 
 class CITEmojiPickerViewModel: ObservableObject {
     @Published var emojisByGroup: EmojiGroups = [EmojiTypes.recents.rawValue:[]]
-    @Published var searchEmojis = [String]()
+    @Published var searchEmojis = [EmojisByGroup]()
     @Published var recentEmojis: [String]? = []
     @Published var searchEmojiText = ""
     @Published var availableEmojiTypes = [EmojiTypes]()
@@ -77,10 +77,10 @@ class CITEmojiPickerViewModel: ObservableObject {
     }
     
     func updateSearchEmojiList() {
-        var searchEmojisList = [String]()
+        var searchEmojisList = [EmojisByGroup]()
         for emoji in searchEmojiArray {
             if emoji.name.contains(searchEmojiText.lowercased()) {
-                searchEmojisList.append(emoji.emoji)
+                searchEmojisList.append(emoji)
             }
         }
         searchEmojis = searchEmojisList
