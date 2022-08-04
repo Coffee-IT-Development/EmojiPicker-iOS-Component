@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EmojisByGroup: Identifiable, Codable, Hashable {
+public struct EmojisByGroup: Identifiable, Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case emoji
         case skinToneSupport = "skin_tone_support"
@@ -19,14 +19,27 @@ struct EmojisByGroup: Identifiable, Codable, Hashable {
         case skinToneSupportUnicodeVersion = "skin_tone_support_unicode_version"
     }
     
-    var id = UUID()
-    let emoji: String
+    public var id = UUID()
+    public let emoji: String
     let skinToneSupport: Bool
-    let name: String
-    let slug: String
+    public let name: String
+    public let slug: String
     let unicodeVersion: String
     let emojiVersion: String
     let skinToneSupportUnicodeVersion: String?
+    
+    public var unicode: String {
+        var unicode: String = ""
+        let unicodes = emoji
+            .unicodeScalars // Unicode scalar values of the string
+            .map { $0.value }
+            .map { String($0, radix: 16, uppercase: true) }
+        for code in unicodes {
+            unicode += "0x\(code)"
+        }
+        
+        return unicode
+    }
     
     init(emoji: String) {
         self.emoji = emoji

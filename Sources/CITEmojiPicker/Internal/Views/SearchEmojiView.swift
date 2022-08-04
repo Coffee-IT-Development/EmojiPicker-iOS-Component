@@ -13,7 +13,7 @@ struct SearchEmojiView: View {
     @Binding private var isSearchingForEmoji: Bool
     @Binding private var keyboardIsOpen: Bool
 
-    private let didAddEmoji: (String) -> Void
+    private let didAddEmoji: (EmojisByGroup) -> Void
     
     var body: some View {
         HStack {
@@ -37,7 +37,7 @@ struct SearchEmojiView: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(viewModel.searchEmojis) { emoji in
-                            Text(emoji)
+                            Text(emoji.emoji)
                                 .font(.system(size: 28))
                                 .padding(.bottom, 12)
                                 .onTapGesture {
@@ -62,7 +62,7 @@ struct SearchEmojiView: View {
     
     init(
         viewModel: CITEmojiPickerViewModel,
-        didAddEmoji: @escaping (String) -> Void,
+        didAddEmoji: @escaping (EmojisByGroup) -> Void,
         isSearchingForEmoji: Binding<Bool>,
         keyboardIsOpen: Binding<Bool>
     ) {
