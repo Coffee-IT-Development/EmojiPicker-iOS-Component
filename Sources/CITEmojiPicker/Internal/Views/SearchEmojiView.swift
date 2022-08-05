@@ -28,7 +28,7 @@ struct SearchEmojiView: View {
                 .disableAutocorrection(true)
         }
         .frame(height: 36)
-        .background(Color.searchBarBackground)
+        .background(Color.searchAndCategoriesBackground)
         .cornerRadius(10)
         .padding([.top, .horizontal], 16)
         

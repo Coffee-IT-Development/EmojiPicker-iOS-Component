@@ -20,7 +20,7 @@ struct EmojiPickerBottomNavigatorView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.emojiCategoriesBackground)
+                .fill(Color.searchAndCategoriesBackground)
                 .frame(maxWidth: .infinity)
             
             HStack(spacing: 8) {

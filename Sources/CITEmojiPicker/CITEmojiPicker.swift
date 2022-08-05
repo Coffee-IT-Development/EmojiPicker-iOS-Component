@@ -119,4 +119,18 @@ public struct CITEmojiPicker: View {
     public init(didAddEmoji: @escaping (EmojisByGroup) -> Void) {
         self.didAddEmoji = didAddEmoji
     }
+    
+    public init(
+        searchAndCategoryBackground: Color = Color.searchAndCategoriesBackground,
+        selectedCategoryBackground: Color = Color.selectedCategoryBackground,
+        sheetBackground: Color = Color.sheetBackground,
+        textColor: Color = Color.textColor,
+        didAddEmoji: @escaping (EmojisByGroup) -> Void
+    ) {
+        Color.searchAndCategoriesBackground = searchAndCategoryBackground
+        Color.selectedCategoryBackground = selectedCategoryBackground
+        Color.sheetBackground = sheetBackground
+        Color.textColor = textColor
+        self.didAddEmoji = didAddEmoji
+    }
 }
