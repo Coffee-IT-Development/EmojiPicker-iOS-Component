@@ -78,6 +78,8 @@ For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 Owned by Coffee IT.
 Actively maintained by Hugo
 
+## Other packages
+[CITPincode](https://github.com/Coffee-IT-Development/Aroma-iOS-CITPincode-Component)
 
 ## Changeslog
 
