@@ -11,6 +11,8 @@
 
 Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
 To get the unicode of an emoji use: emoji.unicode
+There is an intializer to use custom colors for the emoji picker. The values for this are: searchAndCategoryBackground, selectedCategoryBackground, sheetBackground, textColor.
+One or more of these colors can be overriden with your own custom color. If you want to support dark mode simply add this to your custom color.
 
 ```
 struct ContentView: View {
@@ -39,6 +41,9 @@ Actively maintained by Hugo
 
 
 ## Changeslog
+
+#### 1.0.3
+- added custom color initializer
 
 #### 1.0.2
 - added unicodes
