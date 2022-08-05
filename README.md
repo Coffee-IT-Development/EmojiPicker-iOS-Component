@@ -76,7 +76,7 @@ For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 ## Maintainer
 
 Owned by Coffee IT.
-Actively maintained by Hugo de Groot
+Actively maintained by Hugo
 
 
 ## Changeslog
