@@ -19,16 +19,16 @@ struct SearchEmojiView: View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .renderingMode(.template)
-                .foregroundColor(Color.textColor)
+                .foregroundColor(CITEmojiPickerColor.textColor)
                 .padding(.leading)
             
             TextField("\(NSLocalizedString("citemojipicker_search", bundle: .module, comment: "Search"))  \(NSLocalizedString("citemojipicker_emoji", bundle: .module, comment: "Emoji"))", text: $viewModel.searchEmojiText)
-                .foregroundColor(Color.textColor)
+                .foregroundColor(CITEmojiPickerColor.textColor)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
         }
         .frame(height: 36)
-        .background(Color.searchBarBackground)
+        .background(CITEmojiPickerColor.searchAndCategoriesBackground)
         .cornerRadius(10)
         .padding([.top, .horizontal], 16)
         
