@@ -52,7 +52,7 @@ public struct CITEmojiPicker: View {
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
                                         Text(emojiType.lokalisedString)
-                                            .foregroundColor(.textColor)
+                                            .foregroundColor(CITEmojiPickerColor.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
                                         UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
@@ -107,7 +107,7 @@ public struct CITEmojiPicker: View {
                     .frame(height: UIDevice.isIPad ? extraSearchIpadHeight : extraSearchPhoneHeight)
             }
         }
-        .background(Color.sheetBackground.ignoresSafeArea())
+        .background(CITEmojiPickerColor.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
@@ -121,16 +121,16 @@ public struct CITEmojiPicker: View {
     }
     
     public init(
-        searchAndCategoryBackground: Color = Color.searchAndCategoriesBackground,
-        selectedCategoryBackground: Color = Color.selectedCategoryBackground,
-        sheetBackground: Color = Color.sheetBackground,
-        textColor: Color = Color.textColor,
+        searchAndCategoryBackground: Color = CITEmojiPickerColor.searchAndCategoriesBackground,
+        selectedCategoryBackground: Color = CITEmojiPickerColor.selectedCategoryBackground,
+        sheetBackground: Color = CITEmojiPickerColor.sheetBackground,
+        textColor: Color = CITEmojiPickerColor.textColor,
         didAddEmoji: @escaping (EmojisByGroup) -> Void
     ) {
-        Color.searchAndCategoriesBackground = searchAndCategoryBackground
-        Color.selectedCategoryBackground = selectedCategoryBackground
-        Color.sheetBackground = sheetBackground
-        Color.textColor = textColor
+        CITEmojiPickerColor.searchAndCategoriesBackground = searchAndCategoryBackground
+        CITEmojiPickerColor.selectedCategoryBackground = selectedCategoryBackground
+        CITEmojiPickerColor.sheetBackground = sheetBackground
+        CITEmojiPickerColor.textColor = textColor
         self.didAddEmoji = didAddEmoji
     }
 }
