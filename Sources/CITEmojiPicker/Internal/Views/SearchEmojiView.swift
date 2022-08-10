@@ -13,22 +13,22 @@ struct SearchEmojiView: View {
     @Binding private var isSearchingForEmoji: Bool
     @Binding private var keyboardIsOpen: Bool
 
-    private let didAddEmoji: (String) -> Void
+    private let didAddEmoji: (EmojisByGroup) -> Void
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .renderingMode(.template)
-                .foregroundColor(Color.textColor)
+                .foregroundColor(CITEmojiPickerColor.textColor)
                 .padding(.leading)
             
             TextField("\(NSLocalizedString("citemojipicker_search", bundle: .module, comment: "Search"))  \(NSLocalizedString("citemojipicker_emoji", bundle: .module, comment: "Emoji"))", text: $viewModel.searchEmojiText)
-                .foregroundColor(Color.textColor)
+                .foregroundColor(CITEmojiPickerColor.textColor)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
         }
         .frame(height: 36)
-        .background(Color.searchBarBackground)
+        .background(CITEmojiPickerColor.searchAndCategoriesBackground)
         .cornerRadius(10)
         .padding([.top, .horizontal], 16)
         
@@ -37,7 +37,7 @@ struct SearchEmojiView: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(viewModel.searchEmojis) { emoji in
-                            Text(emoji)
+                            Text(emoji.emoji)
                                 .font(.system(size: 28))
                                 .padding(.bottom, 12)
                                 .onTapGesture {
@@ -62,7 +62,7 @@ struct SearchEmojiView: View {
     
     init(
         viewModel: CITEmojiPickerViewModel,
-        didAddEmoji: @escaping (String) -> Void,
+        didAddEmoji: @escaping (EmojisByGroup) -> Void,
         isSearchingForEmoji: Binding<Bool>,
         keyboardIsOpen: Binding<Bool>
     ) {

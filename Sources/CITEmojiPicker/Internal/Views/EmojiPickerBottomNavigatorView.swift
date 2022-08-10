@@ -20,7 +20,7 @@ struct EmojiPickerBottomNavigatorView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.emojiCategoriesBackground)
+                .fill(CITEmojiPickerColor.searchAndCategoriesBackground)
                 .frame(maxWidth: .infinity)
             
             HStack(spacing: 8) {
@@ -29,7 +29,7 @@ struct EmojiPickerBottomNavigatorView: View {
                         ZStack {
                             if emojiType == selectedSection {
                                 Rectangle()
-                                    .fill(Color.selectedCategoryBackground)
+                                    .fill(CITEmojiPickerColor.selectedCategoryBackground)
                                     .frame(width: emojiImageAssetSize * 2, height: emojiImageAssetSize * 2)
                                     .cornerRadius(8)
                                     .padding(2)
@@ -39,7 +39,7 @@ struct EmojiPickerBottomNavigatorView: View {
                                 emojiType.emojiImage
                                     .resizable()
                                     .renderingMode(.template)
-                                    .foregroundColor(Color.textColor)
+                                    .foregroundColor(CITEmojiPickerColor.textColor)
                                     .frame(width: emojiImageAssetSize, height: emojiImageAssetSize)
                             }
                             .frame(maxWidth: .infinity)

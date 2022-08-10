@@ -18,7 +18,7 @@ public struct CITEmojiPicker: View {
     
     private let gridHorizontalPadding: CGFloat = 16
     private let gridLeadingPadding: CGFloat = 10
-    private let didAddEmoji: (String) -> Void
+    private let didAddEmoji: (EmojisByGroup) -> Void
     
     private var columnAmount: Int {
         isPortrait ? 5 : 3
@@ -52,7 +52,7 @@ public struct CITEmojiPicker: View {
                                 if let emojiGroup = viewModel.emojisByGroup[emojiType.rawValue], !emojiGroup.isEmpty {
                                     VStack(alignment: .leading, spacing: 0) {
                                         Text(emojiType.lokalisedString)
-                                            .foregroundColor(.textColor)
+                                            .foregroundColor(CITEmojiPickerColor.textColor)
                                             .padding([.bottom, .leading], 8)
                                         
                                         UIGrid(columns: columnAmount, list: emojiGroup) { emoji in
@@ -61,7 +61,7 @@ public struct CITEmojiPicker: View {
                                                 .padding(.horizontal, isPortrait ? 7 : 1)
                                                 .padding(.vertical, isPortrait ? 3 : 0)
                                                 .onTapGesture {
-                                                    didAddEmoji(emoji.emoji)
+                                                    didAddEmoji(emoji)
                                                     viewModel.setRecentEmojis(emoji: emoji.emoji)
                                                 }
                                         }
@@ -107,7 +107,7 @@ public struct CITEmojiPicker: View {
                     .frame(height: UIDevice.isIPad ? extraSearchIpadHeight : extraSearchPhoneHeight)
             }
         }
-        .background(Color.sheetBackground.ignoresSafeArea())
+        .background(CITEmojiPickerColor.sheetBackground.ignoresSafeArea())
         .frame(maxWidth: .infinity)
         .frame(height: height)
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
@@ -116,7 +116,21 @@ public struct CITEmojiPicker: View {
         }
     }
     
-    public init(didAddEmoji: @escaping (String) -> Void) {
+    public init(didAddEmoji: @escaping (EmojisByGroup) -> Void) {
+        self.didAddEmoji = didAddEmoji
+    }
+    
+    public init(
+        searchAndCategoryBackground: Color = CITEmojiPickerColor.searchAndCategoriesBackground,
+        selectedCategoryBackground: Color = CITEmojiPickerColor.selectedCategoryBackground,
+        sheetBackground: Color = CITEmojiPickerColor.sheetBackground,
+        textColor: Color = CITEmojiPickerColor.textColor,
+        didAddEmoji: @escaping (EmojisByGroup) -> Void
+    ) {
+        CITEmojiPickerColor.searchAndCategoriesBackground = searchAndCategoryBackground
+        CITEmojiPickerColor.selectedCategoryBackground = selectedCategoryBackground
+        CITEmojiPickerColor.sheetBackground = sheetBackground
+        CITEmojiPickerColor.textColor = textColor
         self.didAddEmoji = didAddEmoji
     }
 }
