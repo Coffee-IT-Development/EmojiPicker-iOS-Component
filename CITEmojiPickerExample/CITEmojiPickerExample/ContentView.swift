@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var emoji = "😄"
+    
     var body: some View {
             VStack {
                 Text(emoji)
