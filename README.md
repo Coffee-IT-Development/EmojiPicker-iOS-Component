@@ -87,6 +87,9 @@ Actively maintained by Hugo
 
 ## Changeslog
 
+#### 1.0.4
+- added example project to the package
+
 #### 1.0.3
 - added custom color initializer
 
