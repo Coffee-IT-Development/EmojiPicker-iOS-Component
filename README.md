@@ -33,11 +33,15 @@ One or more of these colors can be overriden with your own custom color. If you 
 
 ```
 struct ContentView: View {
+    @State private var emoji = "😄"
+    
     var body: some View {
         VStack {
-            Spacer()
+            Text(emoji)
+                .frame(maxHeight: .infinity)
+                
             CITEmojiPicker { emoji in
-                print(emoji.emoji)
+                self.emoji = emoji.emoji
             }
         }
         .ignoresSafeArea(.keyboard)
@@ -82,6 +86,9 @@ Actively maintained by Hugo
 [CITPincode](https://github.com/Coffee-IT-Development/Aroma-iOS-CITPincode-Component)
 
 ## Changeslog
+
+#### 1.0.4
+- added example project to the package
 
 #### 1.0.3
 - added custom color initializer
