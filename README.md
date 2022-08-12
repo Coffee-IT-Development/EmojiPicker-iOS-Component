@@ -1,4 +1,4 @@
-# CITEmojiPicker
+[![Coffee IT - Aroma Emoji Picker](https://coffeeit.nl/wp-content/uploads/2022/08/Aroma_Emoji_Picker_iOS.png)](https://coffeeit.nl/)
 
 [![Swift](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)
 [![iOS 13+](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)
@@ -85,28 +85,9 @@ For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 Owned by Coffee IT.
 Actively maintained by Hugo
 
-## Other packages
-[CITPincode](https://github.com/Coffee-IT-Development/Aroma-iOS-CITPincode-Component)
+## More
 
-## Changeslog
-
-#### 1.0.4
-- added example project to the package
-
-#### 1.0.3
-- added custom color initializer
-
-#### 1.0.2
-- added unicodes
-- CITEmojiPicker now returns an EmojiByGroup object
-
-#### 1.0.0
-
-- added EmojiPicker
-- added Search field
-- added Recents
-- added Localisations
-- added Landscape mode support
+Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
 ## License
 
