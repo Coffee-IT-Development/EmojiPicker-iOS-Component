@@ -26,7 +26,7 @@ This component requires minimum __iOS 14__.
 ## SwiftPM
 To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
 ```
-https://github.com/Coffee-IT-Development/Aroma-iOS-CITEmojiPicker-Component
+https://github.com/Coffee-IT-Development/EmojiPicker-iOS-Component
 ```
 
 # 📖 Usage
