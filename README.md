@@ -1,30 +1,33 @@
-[![Coffee IT - Aroma Emoji Picker](https://coffeeit.nl/wp-content/uploads/2022/08/Aroma_Emoji_Picker_iOS.png)](https://coffeeit.nl/)
+[![Coffee IT - iOS Aroma Emoji Picker Component](https://coffeeit.nl/wp-content/uploads/2022/08/Aroma_Emoji_Picker_iOS.png)](https://coffeeit.nl/)
 
-[![Swift](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)
-[![iOS 13+](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)
-[![Mirror Repository](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)
-[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-@CoffeeIT-blue.svg?style=flat-square)](https://linkedin.com/company/coffee-it)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-brightgreen?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-Compatible-brightgreen?style=flat-square)
+[![Swift 5.6](https://img.shields.io/badge/Swift-5.6-brightgreen?style=flat-square)](https://img.shields.io/badge/Swift-5.6-brightgreen?style=flat-square)
+[![iOS v14+](https://img.shields.io/badge/iOS-v14+-brightgreen?style=flat-square)](https://img.shields.io/badge/iOS-v14+-brightgreen?style=flat-square)
+[![Mirror Repository](https://img.shields.io/badge/Mirror-Repository-brightgreen?style=flat-square)](https://img.shields.io/badge/Mirror-Repository-brightgreen?style=flat-square)
+[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-CoffeeIT-blue.svg?style=flat-square)](https://linkedin.com/company/coffee-it)
 [![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
 [![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
+[![Twitter](https://img.shields.io/badge/Twitter-CoffeeITNL-blue.svg?style=flat-square)](https://twitter.com/coffeeitnl)
+# ☕️ iOS Aroma EmojiPicker
+The iOS Aroma EmojiPicker package provides an emojipicker with automatic light and dark mode. This README describes how to implement the EmojiPicker into an app.
 
-The CITEmojiPicker package provides an emoji picker view. The colors can be customized.
-It includes an option to localise the language.
+This GitHub repository is a mirror, the official repository is hosted privately by Coffee IT.
 
-## Supported
-- iOS 14 and higher
+Created by [Coffee IT](https://coffeeit.nl/).
 
-## Installation
+{Insert gif}
 
-### SwiftPM
+# ⚡ Installation
+This component requires minimum __iOS 14__.
 
+## SwiftPM
 To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
 ```
 https://github.com/Coffee-IT-Development/Aroma-iOS-CITEmojiPicker-Component
 ```
 
-
-## Usage
+# 📖 Usage
 Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
 To get the unicode of an emoji use: emoji.unicode  
 <br>
@@ -49,8 +52,7 @@ struct ContentView: View {
     
 ```
 
-## Customization
-
+## ⚙️ Customisation
 ```swift
 /// The background color of the search bar and the category bar.
 public var searchAndCategoryBackground: Color
@@ -66,29 +68,23 @@ public var textColor: Color
 
 ```
 
-## How to use Localisations
+# ✏️ Changelog
+[Changelog](CHANGELOG.md)
 
-If you want the app to use localisations there's a few steps you have to follow. 
-1. Add the languages you want to support to the project info under Localizations
-2. Add a new property to the target info.plist called Localizations
-3. Add the languages you want to support to this array, only then will the languages be visible. Otherwise it will default to English
-4. If you want the simulator to show different languages make sure to edit the scheme options to set the App Language to the desired language
+# 🔗 Related publications
 
-The supported languages are: Arabic, Catalan, Czech, Danish, German, Greek, English, Australian English, British English, Spanish, Latin, Finnish, Universal French, Canadian, Hebrew, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean, Malay, Norwegian, Dutch, Polish, Brazilian Portuguese, Portuguese, Romanian, Russian, Slovak, Swedish, Thai, Turkish, Ukrainian, Vietnamese, Simplified Chinese, Traditional Chinese, Hong Kong
-
-
-## Contact
-For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
-
-## Maintainer
-
-Owned by Coffee IT.
-Actively maintained by Hugo
-
-## More
+- [EmojiPicker for Android](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component)
 
 Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
-## License
+# 📧 Contact
+Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
 
-Distributed under the MIT License. [See LICENSE](LICENSE.txt) for more information.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://global-uploads.webflow.com/605a171ee93af49275331843/623b23cdea80a92703e61b42_Logo_black_1.svg" width="100">
+  <source media="(prefers-color-scheme: light)" srcset="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png" width="100">
+  <img alt="CoffeeIT logo" src="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png">
+</picture>
+
+# ⚠️ License
+The iOS EmojiPicker package is licensed under the terms of the [MIT Open Source license](LICENSE.md).
