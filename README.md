@@ -16,7 +16,9 @@ This GitHub repository is a mirror, the official repository is hosted privately 
 
 Created by [Coffee IT](https://coffeeit.nl/).
 
-{Insert gif}
+<p float="left">
+<img src="https://media1.giphy.com/media/0C9RXsTXiTNkN1WZW0/giphy.gif" width="200">
+</p>
 
 # ⚡ Installation
 This component requires minimum __iOS 14__.
