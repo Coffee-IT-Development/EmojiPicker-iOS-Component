@@ -13,7 +13,11 @@ struct ContentView: View {
     
     var body: some View {
             VStack {
+                Image("aroma_logo")
+                    .padding(.top, 48)
+                
                 Text(emoji)
+                    .font(.largeTitle)
                     .frame(maxHeight: .infinity)
                 
                 CITEmojiPicker { emoji in
