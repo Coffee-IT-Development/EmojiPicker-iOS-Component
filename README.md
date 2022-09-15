@@ -53,7 +53,7 @@ struct CITEmojiPickerExampleView: View {
     
 ```
 
-## ⚙️ Customisation
+## ⚙️ Customization
 ```swift
 /// The background color of the search bar and the category bar.
 public var searchAndCategoryBackground: Color
