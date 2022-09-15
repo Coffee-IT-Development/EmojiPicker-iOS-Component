@@ -11,7 +11,7 @@ import SwiftUI
 struct CITEmojiPickerExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CITEmojiPickerExampleView()
         }
     }
 }
