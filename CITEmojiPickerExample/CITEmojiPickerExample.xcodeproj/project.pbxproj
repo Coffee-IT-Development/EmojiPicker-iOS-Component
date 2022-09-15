@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2865352028A3DAAB00EF2B11 /* CITEmojiPickerExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865351F28A3DAAB00EF2B11 /* CITEmojiPickerExampleApp.swift */; };
-		2865352228A3DAAB00EF2B11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865352128A3DAAB00EF2B11 /* ContentView.swift */; };
+		2865352228A3DAAB00EF2B11 /* CITEmojiPickerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865352128A3DAAB00EF2B11 /* CITEmojiPickerExampleView.swift */; };
 		2865352428A3DAAC00EF2B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2865352328A3DAAC00EF2B11 /* Assets.xcassets */; };
 		2865352728A3DAAC00EF2B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2865352628A3DAAC00EF2B11 /* Preview Assets.xcassets */; };
 		2865353028A3DB5400EF2B11 /* CITEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 2865352F28A3DB5400EF2B11 /* CITEmojiPicker */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		2865351C28A3DAAB00EF2B11 /* CITEmojiPickerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CITEmojiPickerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2865351F28A3DAAB00EF2B11 /* CITEmojiPickerExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITEmojiPickerExampleApp.swift; sourceTree = "<group>"; };
-		2865352128A3DAAB00EF2B11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2865352128A3DAAB00EF2B11 /* CITEmojiPickerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITEmojiPickerExampleView.swift; sourceTree = "<group>"; };
 		2865352328A3DAAC00EF2B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2865352628A3DAAC00EF2B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2865352D28A3DAD800EF2B11 /* CITEmojiPicker */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITEmojiPicker; path = ..; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				2865351F28A3DAAB00EF2B11 /* CITEmojiPickerExampleApp.swift */,
-				2865352128A3DAAB00EF2B11 /* ContentView.swift */,
+				2865352128A3DAAB00EF2B11 /* CITEmojiPickerExampleView.swift */,
 				2865352328A3DAAC00EF2B11 /* Assets.xcassets */,
 				2865352528A3DAAC00EF2B11 /* Preview Content */,
 			);
@@ -152,7 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2865352228A3DAAB00EF2B11 /* ContentView.swift in Sources */,
+				2865352228A3DAAB00EF2B11 /* CITEmojiPickerExampleView.swift in Sources */,
 				2865352028A3DAAB00EF2B11 /* CITEmojiPickerExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
