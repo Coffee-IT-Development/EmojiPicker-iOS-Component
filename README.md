@@ -26,7 +26,7 @@ https://github.com/Coffee-IT-Development/EmojiPicker-iOS-Component
 ```
 
 ## 📖 Usage
-Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
+Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the `.ignoresSafeArea(.keyboard)` viewModifier.
 To get the unicode of an emoji use: emoji.unicode  
 <br>
 There is an intializer to use custom colors for the emoji picker. One or more of the colors used in the package can be overriden with your own custom color. If you want to support dark mode simply add this to your custom color.
@@ -78,7 +78,7 @@ Look at our other repositories on our [GitHub account](https://github.com/orgs/C
 ## ✏️ Changelog
 
 All notable changes to this project will be documented in the [Changelog](CHANGELOG.md).
-`CITBottomSheet` adheres to [Semantic Versioning](https://semver.org/).
+`CITEmojiPicker` adheres to [Semantic Versioning](https://semver.org/).
 
 ## 📧 Contact
 Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
