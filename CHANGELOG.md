@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 `CITEmojiPicker` adheres to [Semantic Versioning](https://semver.org/).
 
+#### 1.0.6
+
+- amend minor issue in readme
+
 #### 1.0.5
 
 - improved readme and example code
