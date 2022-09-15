@@ -10,7 +10,7 @@
 [![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
 [![Twitter](https://img.shields.io/badge/Twitter-CoffeeITNL-blue.svg?style=flat-square)](https://twitter.com/coffeeitnl)
 
-The iOS Aroma EmojiPicker package provides an emoji picker with support light and dark mode and customizable colors.
+The iOS Aroma EmojiPicker package provides an emoji picker with support for light and dark mode as well as customizable colors.
 
 <p float="left">
 <img src="https://media1.giphy.com/media/0C9RXsTXiTNkN1WZW0/giphy.gif" width="200">
