@@ -9,34 +9,33 @@
 [![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
 [![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
 [![Twitter](https://img.shields.io/badge/Twitter-CoffeeITNL-blue.svg?style=flat-square)](https://twitter.com/coffeeitnl)
-# ☕️ iOS Aroma EmojiPicker
-The iOS Aroma EmojiPicker package provides an emojipicker with automatic light and dark mode. This README describes how to implement the EmojiPicker into an app.
 
-This GitHub repository is a mirror, the official repository is hosted privately by Coffee IT.
-
-Created by [Coffee IT](https://coffeeit.nl/).
+The iOS Aroma EmojiPicker package provides an emoji picker with support light and dark mode and customizable colors.
 
 <p float="left">
 <img src="https://media1.giphy.com/media/0C9RXsTXiTNkN1WZW0/giphy.gif" width="200">
 </p>
 
-# ⚡ Installation
+## ⚡ Installation
 This component requires minimum __iOS 14__.
 
-## SwiftPM
+### 🔨 SwiftPM
 To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
 ```
 https://github.com/Coffee-IT-Development/EmojiPicker-iOS-Component
 ```
 
-# 📖 Usage
+## 📖 Usage
 Add `CITEmojiPicker` to a view. Then if the view does not automatically ignore the keyboard, also add the .ignoresSafeArea(.keyboard) viewModifier.
 To get the unicode of an emoji use: emoji.unicode  
 <br>
 There is an intializer to use custom colors for the emoji picker. One or more of the colors used in the package can be overriden with your own custom color. If you want to support dark mode simply add this to your custom color.
 
 ```swift
-struct ContentView: View {
+import CITEmojiPicker
+import SwiftUI
+
+struct CITEmojiPickerExampleView: View {
     @State private var emoji = "😄"
     
     var body: some View {
@@ -70,23 +69,26 @@ public var textColor: Color
 
 ```
 
-# ✏️ Changelog
-[Changelog](CHANGELOG.md)
-
-# 🔗 Related publications
+## 🔗 Related publications
 
 - [EmojiPicker for Android](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component)
 
 Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
-# 📧 Contact
+## ✏️ Changelog
+
+All notable changes to this project will be documented in the [Changelog](CHANGELOG.md).
+`CITBottomSheet` adheres to [Semantic Versioning](https://semver.org/).
+
+## 📧 Contact
 Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://global-uploads.webflow.com/605a171ee93af49275331843/623b23cdea80a92703e61b42_Logo_black_1.svg" width="100">
   <source media="(prefers-color-scheme: light)" srcset="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png" width="100">
-  <img alt="CoffeeIT logo" src="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png">
+  <img alt="CoffeeIT logo" src="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png" width="100">
 </picture>
 
-# ⚠️ License
-The iOS EmojiPicker package is licensed under the terms of the [MIT Open Source license](LICENSE.txt).
+## ⚠️ License
+
+Distributed under the MIT License. [See LICENSE](LICENSE.md) for more information.
