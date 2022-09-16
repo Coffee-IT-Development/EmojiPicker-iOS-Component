@@ -27,12 +27,12 @@ struct EmojiPickerView: View {
         isPortrait ? 392 : 259
     }
     private var extraSearchIpadHeight: CGFloat {
-        let extraHeight = isPortrait ? 100 : 320
-        return keyboardHelper.height + CGFloat(extraHeight)
+        let extraHeight: CGFloat = isPortrait ? 100 : 320
+        return keyboardHelper.height + extraHeight
     }
     private var extraSearchPhoneHeight: CGFloat {
-        let extraHeight = isPortrait ? 40 : 100
-        return keyboardHelper.height - CGFloat(extraHeight)
+        let extraHeight: CGFloat = isPortrait ? 40 : .zero
+        return keyboardHelper.height - extraHeight
     }
     
     public var body: some View {
