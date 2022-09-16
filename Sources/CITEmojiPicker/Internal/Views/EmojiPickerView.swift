@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct EmojiPickerView: View {
+struct EmojiPickerView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var viewModel = CITEmojiPickerViewModel()
     @StateObject private var keyboardHelper = KeyboardHelper()
