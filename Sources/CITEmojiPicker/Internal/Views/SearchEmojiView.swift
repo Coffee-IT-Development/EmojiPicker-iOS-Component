@@ -26,6 +26,7 @@ struct SearchEmojiView: View {
                 .foregroundColor(CITEmojiPickerColor.textColor)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
+                .textContentType(.nickname)
         }
         .frame(height: 36)
         .background(CITEmojiPickerColor.searchAndCategoriesBackground)
@@ -45,7 +46,7 @@ struct SearchEmojiView: View {
                                 }
                         }
                     }
-                    .frame(alignment: .leading)
+                    .frame(height: 28, alignment: .leading)
                     .padding([.top, .horizontal], 16)
                     .onChange(of: viewModel.searchEmojiText) { _ in
                         viewModel.updateSearchEmojiList()
